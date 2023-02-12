@@ -1,0 +1,24 @@
+---
+import Immagine from "./immagine.astro";
+---
+
+<div class="relative h-[400px] w-full md:h-[60vh]">
+  <div class={`absolute h-full w-full`}>
+    <Immagine alt="Famiglia felice neello sfondo" url="immagine_prima_pagina" />
+  </div>
+  <div class="absolute z-10 h-full w-full bg-white bg-opacity-90">
+    <div class="flex h-full flex-col justify-center gap-4 p-10 md:px-20 lg:w-[60%]">
+      <h1 class="text-4xl font-medium">Gruppo Edoardo</h1>
+      <p>
+        Scegliere la propria casa è un momento importante della vita, noi siamo qui per rendere
+        questo viaggio semplice e piacevole. Con il nostro team di esperti e un approccio
+        personalizzato, vi garantiamo un'esperienza di acquisto immobiliare unica e rilassante
+      </p>
+      <div
+        class="w-fit cursor-pointer rounded border bg-blue-600 p-1 px-7 py-1.5 text-white hover:bg-blue-700 active:bg-blue-700"
+      >
+        Chiamaci
+      </div>
+    </div>
+  </div>
+</div>

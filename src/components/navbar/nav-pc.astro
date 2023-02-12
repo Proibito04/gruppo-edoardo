@@ -1,0 +1,19 @@
+---
+import type { ElementiMenu } from "./types";
+
+interface Props {
+  elementiMenu: ElementiMenu;
+}
+
+const { elementiMenu } = Astro.props;
+---
+
+<div class="flex gap-4">
+  {
+    elementiMenu.map((elemento) => (
+      <a class="cursor-pointer transition-all hover:text-cyan-800" href={elemento.link}>
+        {elemento.nome}
+      </a>
+    ))
+  }
+</div>

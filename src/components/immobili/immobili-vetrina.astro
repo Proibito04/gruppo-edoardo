@@ -1,0 +1,12 @@
+---
+import ListaImmobili from "./lista-immobili.svelte";
+
+const url = "https://gruppoedoardo.it/wp-json/immobili/vetrina";
+---
+
+<div class="flex flex-col p-10 md:px-20">
+  <span class="sotto-titolo">La nostra vetrina</span>
+  <div>
+    <ListaImmobili client:visible urlImmobili={url} />
+  </div>
+</div>

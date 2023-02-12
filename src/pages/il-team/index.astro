@@ -1,0 +1,67 @@
+---
+import { each } from "svelte/internal";
+import Footer from "../../components/footer.astro";
+import Immagine from "../../components/immagine.astro";
+import Navbar from "../../components/navbar/navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+
+type agentiType = {
+  acf: {
+    nome: string;
+    cognome: string;
+    email: string;
+    telefono: string;
+    presentazione: string;
+    foto_profilo: number;
+  };
+  images: {
+    medium: string;
+    large: string;
+  };
+};
+
+const agentiRepsone = await fetch("https://gruppoedoardo.it/wp-json/wp/v2/agenti");
+const agenti: agentiType[] = await agentiRepsone.json();
+
+function generaTelefono(telefono: string): string {
+  let tel = telefono.replace(/\s/g, "")
+  if (tel.length == 9) {
+
+    return tel.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3");
+  }
+  return tel.replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3");
+}
+---
+
+<Layout title="Gruppo Edoardo">
+  <Navbar />
+  <div class="m-10 md:mx-20">
+    <a class="my-5 block w-fit rounded bg-blue-600 p-5 py-3 text-white" href="../">
+      🏠Torna alla Home</a
+    >
+    <div class="grid grid-cols-fill-19 gap-5">
+      {
+        agenti.map((agente) => (
+          <div class="flex flex-col border bg-white drop-shadow transition-all hover:scale-[1.03]">
+            <Immagine
+              alt={`la foto profilo di ${agente.acf.nome} ${agente.acf.cognome}`}
+              url={`${agente.acf.nome.toLowerCase()}-profilo`}
+            />
+
+            <div class=" bg-primario flex flex-col p-10 text-white">
+              <span class="w-fit text-xl ">
+                {agente.acf.nome} {agente.acf.cognome}
+              </span>
+              <span class="text-xs">Agente Immobiliare</span>
+              <a href={`tel:${agente.acf.telefono}`} class="mt-5">
+                📞 +39 {generaTelefono(agente.acf.telefono)}
+              </a>
+              <a href={`mailto:${agente.acf.email}`}>✉️ {agente.acf.email}@gruppoedoardo.it</a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <Footer />
+</Layout>

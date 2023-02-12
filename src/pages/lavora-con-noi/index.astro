@@ -1,0 +1,100 @@
+---
+import Footer from "../../components/footer.astro";
+import Navbar from "../../components/navbar/navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Lavora con noi">
+  <Navbar />
+  <div class="p-10 md:px-20">
+    <div class="flex flex-wrap">
+      <div class="md:w-[50%]">
+        <h1 class="mb-5 text-4xl">Lavora con noi</h1>
+        <p>
+          Vuoi investire sul tuo futuro? Entra subito nella nostra squadra! <br />Stiamo cercando
+          agenti immobiliari con o senza esperienza, dinamiche e con molta voglia di crescere
+          professionalmente. <br />Offriamo: <br />– più di venticinque anni di esperienza nel
+          settore; <br />– una struttura organizzata; <br />– life e business coach in sede; <br />–
+          collaborazione attraverso piattaforma replat; <br />Richiediamo: <br />– ottime proprietà
+          di linguaggio; <br />– attitudine al contatto con le persone; <br />– ambizione,
+          determinazione e voglia di crescere come libero professionista; <br />– capacità di
+          ascolto e problem solving; <br />– predisposizione al raggiungimento degli obiettivi.
+        </p>
+      </div>
+      <div class="md:max-w-[50%] w-full">
+        <div class="mt-5 grid grid-cols-2 gap-5 w-full">
+          <label class="inline-block">
+            <span class="text-gray-700">Nome</span>
+            <input
+              type="text"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              placeholder=""
+              required
+            />
+          </label>
+          <label class="inline-block">
+            <span class="text-gray-700">Cognome</span>
+            <input
+              type="text"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              placeholder=""
+              required
+            />
+          </label>
+          <label class="block">
+            <span class="text-gray-700">Età</span>
+            <input
+              type="number"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              placeholder=""
+              required
+            />
+          </label>
+          <label class="block">
+            <span class="text-gray-700">Telefono</span>
+            <input
+              type="tel"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              placeholder=""
+            />
+          </label>
+          <label class="block col-span-full">
+            <span class="text-gray-700">Email</span>
+            <input
+              type="email"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              placeholder="john@esempio.it"
+            />
+          </label>
+          <label class="block col-span-full">
+            <span class="text-gray-700">Dettagli</span>
+            <textarea
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              rows="3"></textarea>
+          </label>
+
+          <div class="block">
+            <div class="">
+              <div>
+                <label class="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 focus:ring-offset-0"
+                    checked=""
+                  />
+                  <span class="ml-2">Accetta la privacy</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="rounded bg-blue-600 p-5 py-4 font-bold text-white transition-all hover:cursor-pointer hover:bg-blue-700 col-span-full"
+          >
+            📤 Invia
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <Footer />
+</Layout>

@@ -1,0 +1,40 @@
+---
+const valori: { titolo: string; testo: string }[] = [
+  {
+    titolo: "Esperienza",
+    testo:
+      "Con anni di conoscenza del mercato immobiliare e una vasta rete di contatti, siamo in grado di offrire soluzioni personalizzate e risultati eccezionali ai nostri clienti. Scegliendo di lavorare con noi, potrete godere dei vantaggi della nostra esperienza e della nostra professionalità.",
+  },
+  {
+    titolo: "Innovazione",
+    testo:
+      "Siamo sempre alla ricerca di nuove soluzioni e opportunità per migliorare il processo di acquisto o vendita immobiliare.\n L'innovazione è al centro del nostro approccio, garantendo ai nostri clienti un servizio efficiente e all'avanguardia. Scegliendo di lavorare con noi, potrete godere dei vantaggi della nostra passione per l'innovazione e della nostra dedizione al progresso.",
+  },
+  {
+    titolo: "Trasparenza",
+    testo:
+      "La trasparenza è fondamentale per noi. Siamo orgogliosi di offrire ai nostri clienti un servizio trasparente e onesto, basato sulla comunicazione aperta e la condivisione delle informazioni. Scegliendo di lavorare con noi, potrete godere della tranquillità derivante da un processo trasparente e privo di sorprese.",
+  }
+];
+---
+
+<div class="flex flex-col p-10 md:px-20">
+  <span class="sotto-titolo"> I nostri valori</span>
+
+  <span class="text-justify">
+    La nostra agenzia immobiliare è fondata su valori forti come l'esperienza, l'umanità, l'innovazione e la trasparenza. Siamo orgogliosi di offrire un servizio eccezionale ai nostri clienti, basato sulla comprensione delle loro esigenze e sulla conoscenza del mercato immobiliare. Lavoriamo costantemente per migliorare e modernizzare il nostro approccio, garantendo sempre trasparenza e integrità. La nostra missione è quella di rendere l'acquisto o la vendita della casa un'esperienza positiva e senza stress per tutti i nostri clienti.
+  </span>
+
+  <div class="mt-2">
+    <div class="gap-15 flex overflow-x-auto">
+      {
+        valori.map((valore) => (
+          <div class="m-1 inline-flex min-w-[250px] flex-col  rounded bg-slate-300 p-5 text-justify py-8 drop-shadow md:max-w-[300px]">
+            <span class="font-poppins mb-2 text-lg">{valore.titolo}</span>
+            <span>{valore.testo}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

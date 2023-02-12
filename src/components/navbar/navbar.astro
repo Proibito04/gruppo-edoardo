@@ -1,0 +1,31 @@
+---
+import LogoEsteso from "../logo/logo-esteso.astro";
+import MenuTel from "./menu-tel.svelte";
+import NavPc from "./nav-pc.astro";
+import type { ElementiMenu } from "./types";
+
+const elementiMenu: ElementiMenu = [
+  { nome: "Home", link: "/" },
+  { nome: "Contatti", link: "/contatti" },
+  { nome: "Il Team", link: "/il-team" },
+  { nome: "Lavora con noi", link: "/lavora-con-noi" },
+  { nome: "Le nostre proposte", link:"/le-proposte" },
+];
+---
+
+<div
+  class="font-s sans fixed top-0 z-20 flex h-20 w-full items-center gap-5 border bg-white py-3 px-10 align-middle drop-shadow md:px-20"
+>
+  <a class="flex h-full w-32 align-middle" href="/">
+    <LogoEsteso />
+  </a>
+
+  <div class="ml-auto hidden h-full items-center md:flex">
+    <NavPc elementiMenu={elementiMenu} />
+  </div>
+  <div class="ml-auto md:hidden">
+    <MenuTel client:only="svelte" elementiMenu={elementiMenu} />
+  </div>
+</div>
+
+<div class="pb-20"></div>

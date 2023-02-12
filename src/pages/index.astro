@@ -1,0 +1,23 @@
+---
+import Footer from "../components/footer.astro";
+import IValori from "../components/i-valori.astro";
+import IlProcessoDiVendita from "../components/il-processo-di-vendita.astro";
+import ImmobiliVetrina from "../components/immobili/immobili-vetrina.astro";
+import Navbar from "../components/navbar/navbar.astro";
+import PaginaPrincipale from "../components/pagina-principale.astro";
+import SezioneContatti from "../components/sezione-contatti.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Gruppo Edoardo">
+  <Navbar />
+
+  <PaginaPrincipale />
+  <IValori />
+  <div class="bg-sky-100">
+    <SezioneContatti />
+  </div>
+  <IlProcessoDiVendita />
+  <ImmobiliVetrina />
+  <Footer />
+</Layout>

@@ -1,0 +1,14 @@
+---
+interface Props {
+  url: string;
+  alt: string
+}
+const { url, alt } = Astro.props;
+
+---
+
+<picture>
+  <source type="image/webp" srcset={`https://storage.googleapis.com/pubblico-sito-edoardo/webp/${url}.webp`}>
+  <source type="image/jpeg" srcset={`https://storage.googleapis.com/pubblico-sito-edoardo/jpeg/${url}.jpg`}>
+  <img src={`https://storage.googleapis.com/pubblico-sito-edoardo/jpeg/${url}.jpg`} alt={alt} class="h-full w-full object-cover">
+</picture>
