@@ -1,17 +1,20 @@
 ---
-import Footer from "../../components/footer.astro";
-import Navbar from "../../components/navbar/navbar.astro";
+import Footer from "../../componenti/footer.astro";
+import Navbar from "../../componenti/navbar/navbar.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="Contatti">
+<Layout
+  title="Contatti"
+  descrizione="Contatta Edoardo Immobiliare oggi per avere accesso ai migliori servizi immobiliari e a un team di esperti pronto ad aiutarti. Chiamaci al numero 011 301 7943, inviaci un'email a info@gruppoedoardo.it o visita il nostro sito web per ulteriori informazioni sui nostri servizi."
+>
   <Navbar />
   <div class="p-10 md:px-20">
     <h1 class="text-4xl">I nostri contatti</h1>
-    <span class="font-medium ">Vienici a trovare!</span>
+    <span class="font-medium">Vienici a trovare!</span>
 
-    <div class="flex flex-col md:flex-row gap-3 mt-5">
-      <div class="flex flex-col md:w-[50%] gap-3">
+    <div class="mt-5 flex flex-col gap-3 md:flex-row">
+      <div class="flex flex-col gap-3 md:w-[50%]">
         <!-- Telefono -->
         <div class="flex items-center align-middle">
           <span class="mr-5 flex h-full w-5">
@@ -45,7 +48,7 @@ import Layout from "../../layouts/Layout.astro";
               ></path></svg
             >
           </span>
-          <span>Corso Alcide de Gasperi 58/C - Torino </span>
+          <span>Corso Alcide de Gasperi 58/C - Torino</span>
         </div>
 
         <!-- email -->

@@ -1,8 +1,7 @@
 ---
-import { each } from "svelte/internal";
-import Footer from "../../components/footer.astro";
-import Immagine from "../../components/immagine.astro";
-import Navbar from "../../components/navbar/navbar.astro";
+import Footer from "../../componenti/footer.astro";
+import Immagine from "../../componenti/immagine.astro";
+import Navbar from "../../componenti/navbar/navbar.astro";
 import Layout from "../../layouts/Layout.astro";
 
 type agentiType = {
@@ -20,20 +19,84 @@ type agentiType = {
   };
 };
 
-const agentiRepsone = await fetch("https://gruppoedoardo.it/wp-json/wp/v2/agenti");
-const agenti: agentiType[] = await agentiRepsone.json();
+const agenti: agentiType[] = [
+  {
+    acf: {
+      nome: "Nicola",
+      cognome: "Balestra",
+      email: "nbalestra",
+      telefono: "349 186 7830",
+      presentazione: "",
+      foto_profilo: 2282,
+    },
+    images: {
+      medium: "https://privato.gruppoedoardo.it/wp-content/uploads/2022/03/nicola-240x300.png",
+      large: "https://privato.gruppoedoardo.it/wp-content/uploads/2022/03/nicola-819x1024.png",
+    },
+  },
+  {
+    acf: {
+      nome: "Marco",
+      cognome: "Ciaccia",
+      email: "mciaccia",
+      telefono: "3939344284",
+      presentazione:
+        "svolgo la professione di agente immobiliare da Luglio dell’anno 2000, sempre con lo stesso gruppo di lavoro giovane, dinamico e costantemente aggiornato.\r\n\r\nTratto personalmente la compravendita e la locazione di immobili residenziali a Torino e provincia, e mi avvalgo della consulenza di altri studi professionali di mia fiducia (architetto, geometra, avvocato, notaio, commercialista) con l’obiettivo di offrire a coloro che mi si rivolgono per vendere, affittare o acquistare un immobile, un servizio a 360°.",
+      foto_profilo: 914,
+    },
+    images: {
+      medium:
+        "https://privato.gruppoedoardo.it/wp-content/uploads/2021/06/73ca792e-marco-240x300.png",
+      large:
+        "https://privato.gruppoedoardo.it/wp-content/uploads/2021/06/73ca792e-marco-819x1024.png",
+    },
+  },
+  {
+    acf: {
+      nome: "Tito",
+      cognome: "Balzano",
+      email: "tbalzano",
+      telefono: "3926170787",
+      presentazione: "",
+      foto_profilo: 966,
+    },
+    images: {
+      medium:
+        "https://privato.gruppoedoardo.it/wp-content/uploads/2021/06/e2a97cd1-tito-240x300.png",
+      large: "https://privato.gruppoedoardo.it/wp-content/uploads/2021/06/e2a97cd1-tito.png",
+    },
+  },
+  {
+    acf: {
+      nome: "Luca",
+      cognome: "Querzoli",
+      email: "lquerzoli",
+      telefono: "335 45 30 83",
+      presentazione: "",
+      foto_profilo: 2667,
+    },
+    images: {
+      medium: "https://privato.gruppoedoardo.it/wp-content/uploads/2021/05/luca-240x300.png",
+      large: "https://privato.gruppoedoardo.it/wp-content/uploads/2021/05/luca-819x1024.png",
+    },
+  },
+];
+
+//  https://privato.gruppoedoardo.it/wp-json/wp/v2/agenti
 
 function generaTelefono(telefono: string): string {
-  let tel = telefono.replace(/\s/g, "")
+  let tel = telefono.replace(/\s/g, "");
   if (tel.length == 9) {
-
     return tel.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3");
   }
   return tel.replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3");
 }
 ---
 
-<Layout title="Gruppo Edoardo">
+<Layout
+  title="Gruppo Edoardo"
+  descrizione="Conosci il team di Edoardo Immobiliare, la tua squadra di esperti immobiliari pronti a fornirti il miglior servizio e a trovare la casa dei tuoi sogni. Con anni di esperienza nel settore immobiliare e una vasta conoscenza del mercato, il nostro team è la scelta perfetta per la tua prossima transazione immobiliare."
+>
   <Navbar />
   <div class="m-10 md:mx-20">
     <a class="my-5 block w-fit rounded bg-blue-600 p-5 py-3 text-white" href="../">

@@ -1,13 +1,8 @@
 <script lang="ts">
-  export let immobile: {
-    immagine_copertina: string;
-    indirizzo_immobile: any;
-    piano: string;
-    prezzo: string;
-    superficie: string;
-    tipologia: string;
-    id: string;
-  } | null = null;
+  import type { Immobile } from "../../types/immobili";
+
+
+  export let immobile: Immobile | null = null;
 
   
   let prezzo: any;
@@ -17,7 +12,7 @@
   }
 </script>
 
-<a class="flex flex-col drop-shadow-xs border bg-white w-[330px] rounded h-auto hover:drop-shadow-xl hover:border-gray-300 transition-all" href={immobile ? `/immobile/${immobile.id}` : ""}>
+<a class="flex flex-col drop-shadow-xs border bg-white w-[330px] rounded h-auto hover:drop-shadow-xl hover:border-gray-300 transition-all" href={immobile ? `/immobile/${immobile.id}` : "./"}>
   <div class="p-5 flex flex-col gap-5">
     {#if immobile == null}
       <div class="w-full bg-slate-300 h-full aspect-video animate-pulse" />

@@ -10,7 +10,7 @@
     const response = await fetch(urlImmobili);
     const character = await response.json();
     dataImmobili = character;
-    console.log(character);
+
     caricamento = false;
   });
 </script>

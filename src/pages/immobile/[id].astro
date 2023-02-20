@@ -1,17 +1,17 @@
 ---
-import Footer from "../../components/footer.astro";
-import Navbar from "../../components/navbar/navbar.astro";
+import Footer from "../../componenti/footer.astro";
+import Navbar from "../../componenti/navbar/navbar.astro";
 import Layout from "../../layouts/Layout.astro";
-import Galleria from "../../components/immobile-singolo/galleria.svelte";
+import Galleria from "../../componenti/immobile-singolo/galleria.svelte";
 import AstroConfig from "../../../astro.config.mjs";
-import ListaImmobili from "../../components/immobili/lista-immobili.svelte";
+import ListaImmobili from "../../componenti/immobili/lista-immobili.svelte";
 interface Props {
   id: string;
 }
 
 const { id } = Astro.params;
 
-const url = `https://gruppoedoardo.it/wp-json/wp/v2/immobili/${id}`;
+const url = `https://privato.gruppoedoardo.it/wp-json/wp/v2/immobili/${id}`;
 
 const res = await fetch(url);
 let risultato: any = await res.json();
@@ -80,9 +80,13 @@ function ottieniDettagli(): { nome: string; testo: string }[] {
 }
 let prezzo: number | string = parseInt(immobile.acf.prezzo) ?? 0;
 prezzo = isNaN(prezzo) ? immobile.acf.prezzo : prezzo.toLocaleString();
+
 ---
 
-<Layout title={`${immobile.acf.tipologia}, ${immobile.acf.indirizzo_immobile.name}`}>
+<Layout
+  title={`${immobile.acf.tipologia}, ${immobile.acf.indirizzo_immobile.name}`}
+  descrizione={`Immobile ${immobile.acf.indirizzo_immobile.street_name} del Gruppo edoArdo. Propone questo allaggio in ${immobile.acf.indirizzo_immobile.name} scropri tutti i dettagli`}
+>
   <Navbar />
   <div class="py-15 flex flex-col gap-5 p-5 md:px-20">
     <!-- intestazione -->
@@ -173,8 +177,11 @@ prezzo = isNaN(prezzo) ? immobile.acf.prezzo : prezzo.toLocaleString();
           <div>
             <span class="sotto-titolo">Altri immobili dell'agente</span>
             <div>
-              <ListaImmobili urlImmobili={`https://gruppoedoardo.it/wp-json/immobili/agente/${immobile.acf.agente}`} client:visible></ListaImmobili>
-              </div>
+              <ListaImmobili
+                urlImmobili={`https://privato.gruppoedoardo.it/wp-json/immobili/agente/${immobile.acf.agente}`}
+                client:visible
+              />
+            </div>
           </div>
         </>
       )

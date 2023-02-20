@@ -1,9 +1,10 @@
 ---
 export interface Props {
   title: string;
+  descrizione?: string;
 }
 
-const { title } = Astro.props;
+const { title, descrizione } = Astro.props;
 import "./base.css";
 ---
 
@@ -15,7 +16,18 @@ import "./base.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <slot name="seo" />
+    {descrizione && <meta name="description" content={descrizione} />}
+    <script type="application/ld+json" slot="seo">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "url": "https://privato.gruppoedoardo.it",
+        "logo": "https://privato.gruppoedoardo.it/wp-content/uploads/4617d307-logo-edoardo-blu.svg"
+      }
+      </script>
   </head>
+
   <body>
     <slot />
     <div class="portal"></div>

@@ -1,19 +1,28 @@
 ---
-import Footer from "../../components/footer.astro";
-import ListaProposte from "../../components/immobile-singolo/lista-proposte.svelte";
-import Navbar from "../../components/navbar/navbar.astro";
+import Footer from "../../componenti/footer.astro";
+import ListaProposte from "../../componenti/immobile-singolo/lista-proposte.svelte";
+import Navbar from "../../componenti/navbar/navbar.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="Le nostre proposte">
+<Layout
+  title="Le nostre proposte"
+  descrizione="Siamo specializzati in case indipendenti, appartamenti, loft e attici di alta qualità, ma offriamo anche soluzioni per investimenti immobiliari e soluzioni commerciali."
+>
   <Navbar />
   <div class="p-5 md:p-10">
-    <h1 class="md:mb-10 text-4xl">Le nostre proposte immobiliari</h1>
-    <p class="text-justify mb-10">  Siamo specializzati in case indipendenti, appartamenti, loft e attici di alta qualità, ma offriamo anche soluzioni per investimenti immobiliari e soluzioni commerciali.
-
-      Il nostro team di esperti immobiliari è pronto a offrirvi un supporto personalizzato e a trovare la soluzione perfetta per soddisfare le vostre esigenze. Siamo sempre alla ricerca delle migliori opportunità immobiliari per i nostri clienti e ci impegniamo a mantenere alti standard di qualità e trasparenza.
-      
-      Esplorate la nostra selezione di proprietà, dove potrete trovare immagini dettagliate, descrizioni complete e informazioni sulle caratteristiche della proprietà. Siamo qui per aiutarvi a prendere la decisione giusta perfetta per scegliere la tua futura casa.</p>
+    <h1 class="text-4xl md:mb-10">Le nostre proposte immobiliari</h1>
+    <p class="mb-10 text-justify">
+      Siamo specializzati in case indipendenti, appartamenti, loft e attici di alta qualità, ma
+      offriamo anche soluzioni per investimenti immobiliari e soluzioni commerciali. Il nostro team
+      di esperti immobiliari è pronto a offrirvi un supporto personalizzato e a trovare la soluzione
+      perfetta per soddisfare le vostre esigenze. Siamo sempre alla ricerca delle migliori
+      opportunità immobiliari per i nostri clienti e ci impegniamo a mantenere alti standard di
+      qualità e trasparenza. Esplorate la nostra selezione di proprietà, dove potrete trovare
+      immagini dettagliate, descrizioni complete e informazioni sulle caratteristiche della
+      proprietà. Siamo qui per aiutarvi a prendere la decisione giusta perfetta per scegliere la tua
+      futura casa.
+    </p>
     <ListaProposte client:idle />
   </div>
   <Footer />

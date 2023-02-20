@@ -15,10 +15,14 @@
   });
 
   function ottieniUrl(pagina: string): string {
-    return `https://gruppoedoardo.it/wp-json/wp/v2/immobili?_fields=acf,galleriaSrc,id&page=${pagina}`;
+    return `https://privato.gruppoedoardo.it/wp-json/wp/v2/immobili?_fields=acf,galleriaSrc,id&page=${pagina}`;
   }
 
-  function ottieniImmobili(pagina: string) {
+  /**
+   * Ottiene gli immobili dal server
+   * @param pagina
+   */
+  function ottieniImmobili(pagina: string): void {
     fetch(ottieniUrl(pagina as string))
       .then((response) => {
         if (!response.ok) {
@@ -91,7 +95,7 @@
   </div>
   <div class="flex flex-wrap gap-10">
     {#if immobili.length == 0}
-      {#each Array(8) as _, i}
+      {#each Array(8) as _}
         <ImmobileAnteprima />
       {/each}
     {/if}

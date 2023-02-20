@@ -1,0 +1,49 @@
+---
+const processi: string[] = [
+  "Preliminare e Conoscitiva",
+  "Verifica dei documenti",
+  "Organizzativa",
+  "Marketing",
+  "Operativa",
+  "Finale",
+];
+---
+
+<div class="flex flex-col p-10 md:px-20">
+  <span class="sotto-titolo">Il nostro processo di vendita</span>
+  <p class="mb-5">
+    Il processo di vendita immobiliare consiste in alcuni passaggi fondamentali: preparazione della
+    proprietà, valutazione del valore di mercato, marketing della proprietà, negoziazione del
+    prezzo, stipula di un contratto d'acquisto e chiusura dell'affare. Durante questo processo,
+    un'agenzia immobiliare può fornire assistenza nella valutazione del valore di mercato, nella
+    promozione della proprietà, nella negoziazione del prezzo e nella gestione della documentazione
+    necessaria per la chiusura dell'affare. Il processo di vendita può richiedere del tempo e
+    richiedere una notevole quantità di conoscenza del mercato immobiliare e delle leggi che lo
+    regolamentano.
+  </p>
+  <div class="flex flex-wrap">
+    <div class="md:min-w-[50%] md:max-w-[50%]">
+      {
+        processi.map((processo, indx) => (
+          <div class="flex items-center py-2">
+            <span class="bg-primario  mr-5 min-h-[40px]  w-[40px] items-center justify-center rounded-full p-2 text-center align-middle text-white ">
+              {indx + 1}
+            </span>
+            <span class="text-md flex-grow basis-0 font-medium">La fase: {processo}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="relative aspect-video w-full min-w-[40%] md:ml-10 md:max-w-[20%]">
+      <iframe
+        class="absolute top-0 bottom-0 aspect-video h-full w-full"
+        width="560"
+        height="315"
+        src="https://www.youtube-nocookie.com/embed/dZ1bpE53OSw"
+        title="Marco e il suo processo di vendita"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</div>

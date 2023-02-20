@@ -24,8 +24,10 @@ const elementiMenu: ElementiMenu = [
     <NavPc elementiMenu={elementiMenu} />
   </div>
   <div class="ml-auto md:hidden">
-    <MenuTel client:only="svelte" elementiMenu={elementiMenu} />
+    <MenuTel client:load elementiMenu={elementiMenu} />
   </div>
 </div>
 
 <div class="pb-20"></div>
+
+<!-- create a div with red bg and 20px height -->

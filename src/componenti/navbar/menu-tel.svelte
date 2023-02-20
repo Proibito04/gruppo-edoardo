@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ElementiMenu } from "./types";
+  import type { ElementiMenu } from "../../types/elementiMenu";
 
   let visibile = false;
 
@@ -35,7 +35,8 @@
   }}
   on:keydown
 >
-  <svg
+  
+<svg
     fill="currentColor"
     class="h-5 w-8 text-gray-800 "
     width="24"

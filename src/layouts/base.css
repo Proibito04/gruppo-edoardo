@@ -1,25 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap"); 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap");
 /* The integration's default injected base.css file */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   * {
-    font-family:"Inter", "Proxima Nova", system-ui, sans-serif;
+    font-family: "Inter", "Proxima Nova", system-ui, sans-serif;
   }
 
-  h1{
-    font-family: 'Poppins', sans-serif;
+  h1 {
+    font-family: "Poppins", sans-serif;
     color: theme("colors.primario");
   }
 }
 
-  
 @layer utilities {
   .sotto-titolo {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     color: theme("colors.primario");
     font-size: theme("fontSize.2xl");
     margin-bottom: theme("margin.2");

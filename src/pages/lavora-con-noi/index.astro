@@ -1,10 +1,13 @@
 ---
-import Footer from "../../components/footer.astro";
-import Navbar from "../../components/navbar/navbar.astro";
+import Footer from "../../componenti/footer.astro";
+import Navbar from "../../componenti/navbar/navbar.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="Lavora con noi">
+<Layout
+  title="Lavora con noi"
+  descrizione="Lavora con noi! stiamo cercando agenti immobiliari come te. compila il forum per metterti in conttato con il Gruppo Edoardo. Entra nel Gruppo!"
+>
   <Navbar />
   <div class="p-10 md:px-20">
     <div class="flex flex-wrap">
@@ -21,8 +24,8 @@ import Layout from "../../layouts/Layout.astro";
           ascolto e problem solving; <br />– predisposizione al raggiungimento degli obiettivi.
         </p>
       </div>
-      <div class="md:max-w-[50%] w-full">
-        <div class="mt-5 grid grid-cols-2 gap-5 w-full">
+      <div class="w-full md:max-w-[50%]">
+        <div class="mt-5 grid w-full grid-cols-2 gap-5">
           <label class="inline-block">
             <span class="text-gray-700">Nome</span>
             <input
@@ -58,7 +61,7 @@ import Layout from "../../layouts/Layout.astro";
               placeholder=""
             />
           </label>
-          <label class="block col-span-full">
+          <label class="col-span-full block">
             <span class="text-gray-700">Email</span>
             <input
               type="email"
@@ -66,7 +69,7 @@ import Layout from "../../layouts/Layout.astro";
               placeholder="john@esempio.it"
             />
           </label>
-          <label class="block col-span-full">
+          <label class="col-span-full block">
             <span class="text-gray-700">Dettagli</span>
             <textarea
               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -88,7 +91,7 @@ import Layout from "../../layouts/Layout.astro";
             </div>
           </div>
           <div
-            class="rounded bg-blue-600 p-5 py-4 font-bold text-white transition-all hover:cursor-pointer hover:bg-blue-700 col-span-full"
+            class="col-span-full rounded bg-blue-600 p-5 py-4 font-bold text-white transition-all hover:cursor-pointer hover:bg-blue-700"
           >
             📤 Invia
           </div>
