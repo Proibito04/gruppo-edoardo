@@ -37,7 +37,7 @@
       .then((data) => {
         data.forEach((element: any) => {
           element.acf.immagine_copertina =
-            element.galleriaSrc[element.acf.immagine_copertina].media;
+            element.galleriaSrc[element.acf.immagine_copertina].media ?? "";
           element.acf.id = element.id;
           immobili.push(element.acf);
         });

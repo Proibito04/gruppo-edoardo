@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "testing": "wrangler pages dev ./dist"
+    "testing": "wrangler pages dev ./dist",
+    "commit": "cz"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^6.1.2",
