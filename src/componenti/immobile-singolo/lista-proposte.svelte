@@ -36,8 +36,9 @@
       })
       .then((data) => {
         data.forEach((element: any) => {
-          element.acf.immagine_copertina =
-            element.galleriaSrc[element.acf.immagine_copertina].media ?? "";
+          let immagine = element.galleriaSrc[element.acf.immagine_copertina];
+          immagine = immagine ? immagine.media : "/img/solo-a.svg";
+          element.acf.immagine_copertina = immagine;
           element.acf.id = element.id;
           immobili.push(element.acf);
         });
@@ -45,7 +46,8 @@
         paginaCorrente = parseInt(pagina);
         immobili = immobili;
       })
-      .catch(() => {
+      .catch((errore) => {
+        console.error(errore);
         if (controllo < 3) {
           controllo++;
           aggiornaUrl(1);
