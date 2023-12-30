@@ -1,37 +1,62 @@
 ---
-const valori: { titolo: string; testo: string }[] = [
+import type { UI, Language } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utilis';
+
+const valori = [
   {
-    titolo: "Esperienza",
-    testo:
-      "Con anni di conoscenza del mercato immobiliare e una vasta rete di contatti, siamo in grado di offrire soluzioni personalizzate e risultati eccezionali ai nostri clienti. Scegliendo di lavorare con noi, potrete godere dei vantaggi della nostra esperienza e della nostra professionalità.",
+    titoloKey: "experienceTitle",
+    testoKey: "experienceText",
   },
   {
-    titolo: "Innovazione",
-    testo:
-      "Siamo sempre alla ricerca di nuove soluzioni e opportunità per migliorare il processo di acquisto o vendita immobiliare.\n L'innovazione è al centro del nostro approccio, garantendo ai nostri clienti un servizio efficiente e all'avanguardia. Scegliendo di lavorare con noi, potrete godere dei vantaggi della nostra passione per l'innovazione e della nostra dedizione al progresso.",
+    titoloKey: "innovationTitle",
+    testoKey: "innovationText",
   },
   {
-    titolo: "Trasparenza",
-    testo:
-      "La trasparenza è fondamentale per noi. Siamo orgogliosi di offrire ai nostri clienti un servizio trasparente e onesto, basato sulla comunicazione aperta e la condivisione delle informazioni. Scegliendo di lavorare con noi, potrete godere della tranquillità derivante da un processo trasparente e privo di sorprese.",
+    titoloKey: "transparencyTitle",
+    testoKey: "transparencyText",
   }
 ];
+
+const ui: UI = {
+  it: {
+    experienceTitle: "Esperienza",
+    experienceText: "Con anni di conoscenza del mercato immobiliare e una vasta rete di contatti, siamo in grado di offrire soluzioni personalizzate e risultati eccezionali ai nostri clienti...",
+    innovationTitle: "Innovazione",
+    innovationText: "Siamo sempre alla ricerca di nuove soluzioni e opportunità per migliorare il processo di acquisto o vendita immobiliare...",
+    transparencyTitle: "Trasparenza",
+    transparencyText: "La trasparenza è fondamentale per noi. Siamo orgogliosi di offrire ai nostri clienti un servizio trasparente e onesto...",
+  },
+  en: {
+    experienceTitle: "Experience",
+    experienceText: "With years of real estate market knowledge and a wide network of contacts, we are able to offer personalized solutions and exceptional results to our clients...",
+    innovationTitle: "Innovation",
+    innovationText: "We are always looking for new solutions and opportunities to improve the real estate buying or selling process...",
+    transparencyTitle: "Transparency",
+    transparencyText: "Transparency is fundamental for us. We are proud to offer our clients a transparent and honest service...",
+  }
+}
+
+interface Props{
+  lang: Language;
+}
+const { lang = "it" } = Astro.props;
+const t = useTranslations(lang, ui);
 ---
 
 <div class="flex flex-col p-10 md:px-20">
-  <span class="sotto-titolo"> I nostri valori</span>
+  <span class="sotto-titolo">{t("ourValuesTitle")}</span>
 
   <span class="text-justify">
-    La nostra agenzia immobiliare è fondata su valori forti come l'esperienza, l'umanità, l'innovazione e la trasparenza. Siamo orgogliosi di offrire un servizio eccezionale ai nostri clienti, basato sulla comprensione delle loro esigenze e sulla conoscenza del mercato immobiliare. Lavoriamo costantemente per migliorare e modernizzare il nostro approccio, garantendo sempre trasparenza e integrità. La nostra missione è quella di rendere l'acquisto o la vendita della casa un'esperienza positiva e senza stress per tutti i nostri clienti.
+    {t("ourValuesDescription")}
   </span>
 
   <div class="mt-2">
     <div class="gap-15 flex overflow-x-auto">
       {
         valori.map((valore) => (
-          <div class="m-1 inline-flex min-w-[250px] flex-col  rounded bg-slate-300 p-5 text-justify py-8 drop-shadow md:max-w-[300px]">
-            <span class="font-poppins mb-2 text-lg">{valore.titolo}</span>
-            <span>{valore.testo}</span>
+          <div class="m-1 inline-flex min-w-[250px] flex-col rounded bg-slate-300 p-5 text-justify py-8 drop-shadow md:max-w-[300px]">
+            <span class="font-poppins mb-2 text-lg">{t(valore.titoloKey)}</span>
+            <span>{t(valore.testoKey)}</span>
           </div>
         ))
       }

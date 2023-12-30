@@ -1,24 +1,42 @@
 ---
-import Footer from "../componenti/footer.astro";
-import IValori from "../contenuti/index/i-valori.astro";
-import IlProcessoDiVendita from "../contenuti/index/il-processo-di-vendita.astro";
-import ImmobiliVetrina from "../contenuti/index/immobili-vetrina.astro";
-import Navbar from "../componenti/navbar/navbar.astro";
+import Layout from "../layouts/Layout.astro"
+import Navbar from "../componenti/navbar/navbar.astro"
 import PaginaPrincipale from "../contenuti/index/pagina-principale.astro";
 import SezioneContatti from "../contenuti/index/sezione-contatti.astro";
-import Layout from "../layouts/Layout.astro";
+import IValori from "../contenuti/index/i-valori.astro";
+import ImmobiliVetrina from "../contenuti/index/immobili-vetrina.astro";
+import IlProcessoDiVendita from "../contenuti/index/il-processo-di-vendita.astro";
+import Footer from "../componenti/footer.astro";
+import type { UI, Language } from "../i18n/ui";
+import { useTranslations } from "../i18n/utilis";
+
+const ui: UI = {
+  it: {
+
+  },
+  en: {
+
+  }
+}
+interface Props{
+  lang: Language
+}
+const {lang = "it"} = Astro.props
+const t = useTranslations(lang, ui)
+
+
 ---
 
 <Layout title="Gruppo Edoardo" descrizione="Scopri il mondo Edoardo Immobiliare, l'agenzia immobiliare leader nel mercato immobiliare. Con noi, troverai la casa dei tuoi sogni o vendere il tuo immobile con facilità e professionalità. Contattaci oggi per un servizio immobiliare di alta qualità.">
 
-  <Navbar />
+  <Navbar {lang} />
 
-  <PaginaPrincipale />
-  <IValori />
+  <PaginaPrincipale {lang} />
+  <IValori {lang} />
   <div class="bg-sky-100">
-    <SezioneContatti />
+    <SezioneContatti {lang} />
   </div>
-  <IlProcessoDiVendita />
+  <IlProcessoDiVendita {lang} />
   <ImmobiliVetrina />
-  <Footer />
+  <Footer {lang} />
 </Layout>

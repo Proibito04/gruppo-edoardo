@@ -4,8 +4,9 @@ interface Props {
   alt: string
 }
 const { url, alt } = Astro.props;
-
+// todo add the image
 ---
+
 
 <picture>
   <source type="image/webp" srcset={`https://storage.googleapis.com/pubblico-sito-edoardo/webp/${url}.webp`}>

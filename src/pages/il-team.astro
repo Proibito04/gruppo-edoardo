@@ -1,8 +1,10 @@
 ---
-import Footer from "../../componenti/footer.astro";
-import Immagine from "../../componenti/immagine.astro";
-import Navbar from "../../componenti/navbar/navbar.astro";
-import Layout from "../../layouts/Layout.astro";
+import Footer from "../componenti/footer.astro";
+import Immagine from "../componenti/immagine.astro";
+import Navbar from "../componenti/navbar/navbar.astro";
+import { useTranslations } from "../i18n/utilis";
+import Layout from "../layouts/Layout.astro";
+import type { Language, UI } from "../i18n/ui";
 
 type agentiType = {
   acf: {
@@ -18,6 +20,11 @@ type agentiType = {
     large: string;
   };
 };
+
+interface Props{
+  lang: Language
+}
+const {lang = "it"} = Astro.props
 
 const agenti: agentiType[] = [
   {
@@ -82,6 +89,17 @@ const agenti: agentiType[] = [
   },
 ];
 
+const ui: UI = {
+  it: {
+    "realEstateAgent": "Agente Immobiliare"
+  },
+  en: {
+    "realEstateAgent": "Real Estate Agent"
+  }
+}
+
+const t = useTranslations(lang, ui)
+
 //  https://privato.gruppoedoardo.it/wp-json/wp/v2/agenti
 
 function generaTelefono(telefono: string): string {
@@ -97,7 +115,7 @@ function generaTelefono(telefono: string): string {
   title="Gruppo Edoardo"
   descrizione="Conosci il team di Edoardo Immobiliare, la tua squadra di esperti immobiliari pronti a fornirti il miglior servizio e a trovare la casa dei tuoi sogni. Con anni di esperienza nel settore immobiliare e una vasta conoscenza del mercato, il nostro team è la scelta perfetta per la tua prossima transazione immobiliare."
 >
-  <Navbar />
+  <Navbar {lang} />
   <div class="m-10 md:mx-20">
     <a class="my-5 block w-fit rounded bg-blue-600 p-5 py-3 text-white" href="../">
       🏠Torna alla Home</a
@@ -115,7 +133,7 @@ function generaTelefono(telefono: string): string {
               <span class="w-fit text-xl ">
                 {agente.acf.nome} {agente.acf.cognome}
               </span>
-              <span class="text-xs">Agente Immobiliare</span>
+              <span class="text-xs">{t("realEstateAgent")}</span>
               <a href={`tel:${agente.acf.telefono}`} class="mt-5">
                 📞 +39 {generaTelefono(agente.acf.telefono)}
               </a>

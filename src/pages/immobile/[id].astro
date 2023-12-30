@@ -80,7 +80,7 @@ function ottieniDettagli(): { nome: string; testo: string }[] {
 }
 let prezzo: number | string = parseInt(immobile.acf.prezzo) ?? 0;
 prezzo = isNaN(prezzo) ? immobile.acf.prezzo : prezzo.toLocaleString();
-
+export const prerender = false;
 ---
 
 <Layout

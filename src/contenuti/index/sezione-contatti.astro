@@ -1,18 +1,30 @@
 ---
 import ContattiInteressati from "../../componenti/forms/contatti-interessati.svelte";
+import type { UI, Language } from "../../i18n/ui";
+import { useTranslations } from "../../i18n/utilis";
 
+const ui: UI = {
+  it: {
+    subtitle: "Affidaci casa tua!",
+    description: "Affidare la propria casa a noi significa scegliere un team di professionisti esperti e dedicati. La nostra lunga esperienza nel settore immobiliare ci permette di offrire soluzioni personalizzate e innovative per soddisfare le esigenze di ogni cliente. La trasparenza e l'umanità sono al centro del nostro approccio, garantendo un'esperienza di vendita o acquisto immobiliare senza stress e al massimo livello di soddisfazione. Scegliendo di lavorare con noi, potrete stare certi di aver fatto una scelta eccellente per la vostra casa e il vostro futuro."
+  },
+  en: {
+    subtitle: "Entrust Us with Your Home!",
+    description: "Entrusting your home to us means choosing a team of expert and dedicated professionals. Our long experience in the real estate sector allows us to offer personalized and innovative solutions to meet the needs of every client. Transparency and humanity are at the heart of our approach, ensuring a stress-free real estate buying or selling experience at the highest level of satisfaction. By choosing to work with us, you can be sure of making an excellent choice for your home and your future."
+  }
+}
 
+interface Props{
+  lang: Language;
+}
+const { lang = "it" } = Astro.props;
+const t = useTranslations(lang, ui);
 ---
 
 <div class="flex flex-col p-10 md:px-20">
-  <span class="sotto-titolo">Affidaci casa tua!</span>
+  <span class="sotto-titolo">{t("subtitle")}</span>
   <span class="text-justify">
-    Affidare la propria casa a noi significa scegliere un team di professionisti esperti e dedicati.
-    La nostra lunga esperienza nel settore immobiliare ci permette di offrire soluzioni
-    personalizzate e innovative per soddisfare le esigenze di ogni cliente. La trasparenza e
-    l'umanità sono al centro del nostro approccio, garantendo un'esperienza di vendita o acquisto
-    immobiliare senza stress e al massimo livello di soddisfazione. Scegliendo di lavorare con noi,
-    potrete stare certi di aver fatto una scelta eccellente per la vostra casa e il vostro futuro.
+    {t("description")}
   </span>
   <div class="lg:max-w-[40%] mt-5">
     <ContattiInteressati client:visible />

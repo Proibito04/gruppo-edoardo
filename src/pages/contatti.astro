@@ -1,17 +1,41 @@
 ---
-import Footer from "../../componenti/footer.astro";
-import Navbar from "../../componenti/navbar/navbar.astro";
-import Layout from "../../layouts/Layout.astro";
+import Footer from "../componenti/footer.astro";
+import Navbar from "../componenti/navbar/navbar.astro";
+import type { Language, UI } from "../i18n/ui";
+import Layout from "../layouts/Layout.astro";
+import {useTranslations} from "../i18n/utilis"
+
+interface Props {
+  lang: Language;
+}
+const { lang = "it" } = Astro.props;
+
+const ui: UI = {
+  it: {
+    title: "I nostri contatti",
+    subtitle: "Vienici a trovare",
+    callToAction:
+      "Siamo profondamente impegnati a supportare i nostri clienti nella ricerca della casa ideale, quella che soddisfi appieno i loro desideri. Siamo sempre disponibili per rispondere a qualsiasi domanda o per fornire informazioni aggiuntive che possano facilitare questo importante processo. Non esitate a contattarci; sarà nostro grande piacere assistervi in ogni aspetto della vostra ricerca.",
+  },
+  en: {
+    title: "Get in touch",
+    subtitle: "Come visit us",
+    callToAction:
+      "We are deeply committed to supporting our clients in finding their ideal home, one that fully meets their desires. We are always available to answer any questions or provide additional information that may facilitate this important process. Please do not hesitate to contact us; it will be our great pleasure to assist you in every aspect of your search.",
+  },
+};
+
+const t = useTranslations(lang, ui)
 ---
 
 <Layout
   title="Contatti"
   descrizione="Contatta Edoardo Immobiliare oggi per avere accesso ai migliori servizi immobiliari e a un team di esperti pronto ad aiutarti. Chiamaci al numero 011 301 7943, inviaci un'email a info@gruppoedoardo.it o visita il nostro sito web per ulteriori informazioni sui nostri servizi."
 >
-  <Navbar />
+  <Navbar {lang} />
   <div class="p-10 md:px-20">
-    <h1 class="text-4xl">I nostri contatti</h1>
-    <span class="font-medium">Vienici a trovare!</span>
+    <h1 class="text-4xl">{t("title")}</h1>
+    <span class="font-medium">{t("subtitle")}</span>
 
     <div class="mt-5 flex flex-col gap-3 md:flex-row">
       <div class="flex flex-col gap-3 md:w-[50%]">
@@ -79,16 +103,14 @@ import Layout from "../../layouts/Layout.astro";
           <span>@gruppoedoardo</span>
         </div>
         <p>
-          Siamo sempre felici di aiutare i nostri clienti a trovare la casa dei loro sogni. Non
-          esitate a contattarci per qualsiasi domanda o richiesta di informazioni. Saremo lieti di
-          aiutarvi in ogni modo possibile.
+          {t("callToAction")}
         </p>
       </div>
       <!-- fine parte sinsitra -->
       <div class="md:w-[50%]">
         <div class="relative aspect-video w-full">
           <iframe
-            class="absolute top-0 bottom-0 aspect-video h-full w-full"
+            class="absolute bottom-0 top-0 aspect-video h-full w-full"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2818.574097492702!2d7.654969715742878!3d45.05386396874989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47886d302f337c7b%3A0x1cb15728e958b7c3!2sGruppo%20edoArdo%20-%20agenzia%20immobiliare!5e0!3m2!1sit!2sit!4v1675983638312!5m2!1sit!2sit"
             width="600"
             height="450"

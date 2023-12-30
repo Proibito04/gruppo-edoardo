@@ -41,6 +41,7 @@
       errore = errore;
     }, 5000);
   }
+  
 </script>
 
 <form on:submit|preventDefault={inviaForm} class:inviati>

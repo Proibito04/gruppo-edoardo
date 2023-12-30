@@ -1,0 +1,20 @@
+---
+import Contatti from "../contatti.astro";
+import IlTeam from "../il-team.astro";
+import Index from "../index.astro";
+import LavoraConNoi from "../lavora-con-noi.astro";
+import LeNostreProposte from "../le-nostre-proposte.astro";
+export async function getStaticPaths() {
+  return [
+    { params: { page: "contacts" }, props: { Component: Contatti } },
+    { params: { page: "our-team" }, props: { Component: IlTeam } },
+    { params: { page: "work-with-us" }, props: { Component: LavoraConNoi } },
+    { params: { page: "our-proposal" }, props: { Component: LeNostreProposte } },
+  ];
+}
+
+const { page } = Astro.params;
+const { Component } = Astro.props;
+---
+
+{Component ? <Component lang="en" /> : <div>Componente non trovato.</div>}

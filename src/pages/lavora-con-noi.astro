@@ -1,33 +1,66 @@
 ---
-import Footer from "../../componenti/footer.astro";
-import Navbar from "../../componenti/navbar/navbar.astro";
-import Layout from "../../layouts/Layout.astro";
+import Footer from "../componenti/footer.astro";
+import Navbar from "../componenti/navbar/navbar.astro";
+import type { UI, Language } from "../i18n/ui";
+import { useTranslations } from "../i18n/utilis";
+import Layout from "../layouts/Layout.astro";
+
+const ui: UI = {
+  it: {
+    "title": "Lavora con noi",
+    "motivation": `Vuoi investire sul tuo futuro? Entra subito nella nostra squadra! <br />Stiamo cercando
+agenti immobiliari con o senza esperienza, dinamiche e con molta voglia di crescere
+professionalmente. <br />Offriamo: <br />– più di venticinque anni di esperienza nel
+settore; <br />– una struttura organizzata; <br />– life e business coach in sede; <br />–
+collaborazione attraverso piattaforma replat; <br />Richiediamo: <br />– ottime proprietà
+di linguaggio; <br />– attitudine al contatto con le persone; <br />– ambizione,
+determinazione e voglia di crescere come libero professionista; <br />– capacità di
+ascolto e problem solving; <br />– predisposizione al raggiungimento degli obiettivi.`,
+    "name": "Nome",
+    "surname": "Cognome",
+    "age": "Età",
+    "phoneNumber": "Numero di Telefono",
+    "details": "Dettagli",
+    "privacy": "Accetto il contratto della privacy",
+    "send": "Invia"
+  },
+  en: {
+    "title": "Work with Us",
+    "motivation": `Want to invest in your future? Join our team now! <br />We are looking for real estate agents, both experienced and novices, who are dynamic and eager to grow professionally. <br />We offer: <br />– over twenty-five years of experience in the field; <br />– an organized structure; <br />– in-house life and business coaching; <br />– collaboration through the Replat platform; <br />We require: <br />– excellent language skills; <br />– an aptitude for interacting with people; <br />– ambition, determination, and a desire to grow as a freelance professional; <br />– listening and problem-solving skills; <br />– a goal-oriented mindset.`,
+    "name": "Name",
+    "surname": "Surname",
+    "age": "Age",
+    "phoneNumber": "Phone number",
+    "details": "Details",
+    "privacy": "I accept the privacy agreement",
+    "send": "Send"
+  }
+}
+interface Props{
+  lang: Language
+}
+const {lang = "it"} = Astro.props
+const t = useTranslations(lang, ui)
+
 ---
 
 <Layout
-  title="Lavora con noi"
+  title={t("title")}
   descrizione="Lavora con noi! stiamo cercando agenti immobiliari come te. compila il forum per metterti in conttato con il Gruppo Edoardo. Entra nel Gruppo!"
 >
-  <Navbar />
+  <Navbar {lang}/>
   <div class="p-10 md:px-20">
     <div class="flex flex-wrap">
       <div class="md:w-[50%]">
-        <h1 class="mb-5 text-4xl">Lavora con noi</h1>
-        <p>
-          Vuoi investire sul tuo futuro? Entra subito nella nostra squadra! <br />Stiamo cercando
-          agenti immobiliari con o senza esperienza, dinamiche e con molta voglia di crescere
-          professionalmente. <br />Offriamo: <br />– più di venticinque anni di esperienza nel
-          settore; <br />– una struttura organizzata; <br />– life e business coach in sede; <br />–
-          collaborazione attraverso piattaforma replat; <br />Richiediamo: <br />– ottime proprietà
-          di linguaggio; <br />– attitudine al contatto con le persone; <br />– ambizione,
-          determinazione e voglia di crescere come libero professionista; <br />– capacità di
-          ascolto e problem solving; <br />– predisposizione al raggiungimento degli obiettivi.
+        <h1 class="mb-5 text-4xl">{t("title")}</h1>
+        <p set:html={t("motivation")}>
+
         </p>
       </div>
       <div class="w-full md:max-w-[50%]">
         <div class="mt-5 grid w-full grid-cols-2 gap-5">
           <label class="inline-block">
-            <span class="text-gray-700">Nome</span>
+            <span class="text-gray-700">{t("name")}</span>
             <input
               type="text"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -36,7 +69,7 @@ import Layout from "../../layouts/Layout.astro";
             />
           </label>
           <label class="inline-block">
-            <span class="text-gray-700">Cognome</span>
+            <span class="text-gray-700">{t("surname")}</span>
             <input
               type="text"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -45,7 +78,7 @@ import Layout from "../../layouts/Layout.astro";
             />
           </label>
           <label class="block">
-            <span class="text-gray-700">Età</span>
+            <span class="text-gray-700">{t("age")}</span>
             <input
               type="number"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -54,7 +87,7 @@ import Layout from "../../layouts/Layout.astro";
             />
           </label>
           <label class="block">
-            <span class="text-gray-700">Telefono</span>
+            <span class="text-gray-700">{t("phoneNumber")}</span>
             <input
               type="tel"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -70,7 +103,7 @@ import Layout from "../../layouts/Layout.astro";
             />
           </label>
           <label class="col-span-full block">
-            <span class="text-gray-700">Dettagli</span>
+            <span class="text-gray-700">{t("details")}</span>
             <textarea
               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               rows="3"></textarea>
@@ -85,7 +118,7 @@ import Layout from "../../layouts/Layout.astro";
                     class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 focus:ring-offset-0"
                     checked=""
                   />
-                  <span class="ml-2">Accetta la privacy</span>
+                  <span class="ml-2">{t("privacy")}</span>
                 </label>
               </div>
             </div>
@@ -93,7 +126,7 @@ import Layout from "../../layouts/Layout.astro";
           <div
             class="col-span-full rounded bg-blue-600 p-5 py-4 font-bold text-white transition-all hover:cursor-pointer hover:bg-blue-700"
           >
-            📤 Invia
+            📤 {t("send")}
           </div>
         </div>
       </div>

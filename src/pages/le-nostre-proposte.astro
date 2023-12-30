@@ -1,0 +1,43 @@
+---
+import Footer from "../componenti/footer.astro";
+import ListaProposte from "../componenti/immobile-singolo/lista-proposte.svelte";
+import Navbar from "../componenti/navbar/navbar.astro";
+import type { UI, Language } from "../i18n/ui";
+import { useTranslations } from "../i18n/utilis";
+import Layout from "../layouts/Layout.astro";
+
+const ui: UI = {
+  it: {
+    pageTitle: "Le nostre proposte",
+    pageDescription: "Siamo specializzati in case indipendenti, appartamenti, loft e attici di alta qualità, ma offriamo anche soluzioni per investimenti immobiliari e soluzioni commerciali.",
+    header: "Le nostre proposte immobiliari",
+    content: "Siamo specializzati in case indipendenti, appartamenti, loft e attici di alta qualità, ma offriamo anche soluzioni per investimenti immobiliari e soluzioni commerciali. Il nostro team di esperti immobiliari è pronto a offrirvi un supporto personalizzato e a trovare la soluzione perfetta per soddisfare le vostre esigenze. Siamo sempre alla ricerca delle migliori opportunità immobiliari per i nostri clienti e ci impegniamo a mantenere alti standard di qualità e trasparenza. Esplorate la nostra selezione di proprietà, dove potrete trovare immagini dettagliate, descrizioni complete e informazioni sulle caratteristiche della proprietà. Siamo qui per aiutarvi a prendere la decisione giusta perfetta per scegliere la tua futura casa."
+  },
+  en: {
+    pageTitle: "Our Proposals",
+    pageDescription: "We specialize in independent houses, apartments, lofts, and high-quality penthouses, but we also offer solutions for real estate investments and commercial solutions.",
+    header: "Our Real Estate Proposals",
+    content: "We specialize in independent houses, apartments, lofts, and high-quality penthouses, but we also offer solutions for real estate investments and commercial solutions. Our team of real estate experts is ready to provide you with personalized support and find the perfect solution to meet your needs. We are always looking for the best real estate opportunities for our clients and are committed to maintaining high standards of quality and transparency. Explore our selection of properties, where you can find detailed images, complete descriptions, and information on the features of the property. We are here to help you make the right decision perfect for choosing your future home."
+  }
+}
+interface Props{
+  lang: Language;
+}
+const { lang = "it" } = Astro.props;
+const t = useTranslations(lang, ui);
+---
+
+<Layout
+  title={t("pageTitle")}
+  descrizione={t("pageDescription")}
+>
+  <Navbar {lang}/>
+  <div class="p-5 md:p-10">
+    <h1 class="text-4xl md:mb-10">{t("header")}</h1>
+    <p class="mb-10 text-justify">
+      {t("content")}
+    </p>
+    <ListaProposte client:idle />
+  </div>
+  <Footer {lang} />
+</Layout>

@@ -1,17 +1,16 @@
-import { defineConfig } from 'astro/config';
-
-// https://astro.build/config
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-
-// https://astro.build/config
 import svelte from "@astrojs/svelte";
-
-// https://astro.build/config
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
+
 export default defineConfig({
   integrations: [tailwind(), svelte()],
-  output: "server",
-  adapter: cloudflare()
+  output: "hybrid",
+  adapter: cloudflare(),
+  i18n: {
+    defaultLocale: "it",
+    locales: ["it", "en"],
+  },
 });

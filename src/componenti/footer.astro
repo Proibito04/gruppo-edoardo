@@ -1,5 +1,21 @@
 ---
+import type { UI, Language } from "../i18n/ui";
+import { useTranslations } from "../i18n/utilis";
 import LogoEstesoBianco from "./logo/logo-esteso-bianco.astro";
+
+const ui: UI = {
+  it: {
+    "madeWith": "Fatto con il"
+  },
+  en: {
+    "madeWith" : "Made with"
+  }
+}
+interface Props{
+  lang?: Language
+}
+const {lang = "it"} = Astro.props
+const t = useTranslations(lang, ui)
 ---
 
 <div
@@ -19,5 +35,5 @@ import LogoEstesoBianco from "./logo/logo-esteso-bianco.astro";
     Torino REA 1249853
   </span>
 
-  <span class="text-[9px]">Creato con il ❤️ da Edoardo Balzano</span>
+  <span class="text-[9px]">{t("madeWith")} ❤️ da Edoardo Balzano</span>
 </div>
