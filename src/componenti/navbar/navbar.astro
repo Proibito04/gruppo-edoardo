@@ -5,7 +5,7 @@ import NavPc from "./nav-pc.astro";
 import type { ElementiMenu } from "../../types/elementiMenu";
 import type { Language } from "../../i18n/ui";
 import { getAbsoluteLocaleUrl } from "astro:i18n";
-import LanguagePicker from "../LanguagePicker.astro";
+import LanguagePicker from "../LanguagePicker.svelte";
 
 const elementiMenu: ElementiMenu = [];
 interface Props {
@@ -16,7 +16,6 @@ const { lang = "it" } = Astro.props;
 
 function generateMenu() {
   for (let [key, val] of Object.entries(ui[lang])) {
-    console.log(key, val);
     elementiMenu.push({
       nome: val,
       link: getAbsoluteLocaleUrl(lang, modelLink(val == "Home" ? "" : val)),
@@ -55,13 +54,13 @@ generateMenu();
     <LogoEsteso />
   </a>
 
-  <LanguagePicker />
   <div class="ml-auto hidden h-full items-center md:flex">
     <NavPc elementiMenu={elementiMenu} />
   </div>
   <div class="ml-auto md:hidden">
     <MenuTel client:load elementiMenu={elementiMenu} />
   </div>
+  <LanguagePicker client:idle selectedLang={lang} />
 </div>
 
 <div class="pb-20"></div>
