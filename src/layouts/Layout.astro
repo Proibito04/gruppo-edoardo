@@ -2,14 +2,15 @@
 export interface Props {
   title: string;
   descrizione?: string;
+  lang ?: string
 }
 
-const { title, descrizione } = Astro.props;
+const { title, descrizione, lang = "it" } = Astro.props;
 import "./base.css";
 ---
 
 <!DOCTYPE html>
-<html lang="it">
+<html {lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />

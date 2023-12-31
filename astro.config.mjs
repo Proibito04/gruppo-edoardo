@@ -12,5 +12,8 @@ export default defineConfig({
   i18n: {
     defaultLocale: "it",
     locales: ["it", "en"]
+  },
+  image: {
+    domains: ["privato.gruppoedoardo.it"],
   }
 });

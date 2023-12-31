@@ -5,6 +5,7 @@ import Navbar from "../componenti/navbar/navbar.astro";
 import { useTranslations } from "../i18n/utilis";
 import Layout from "../layouts/Layout.astro";
 import type { Language, UI } from "../i18n/ui";
+import { Image } from 'astro:assets';
 
 type agentiType = {
   acf: {
@@ -26,75 +27,18 @@ interface Props {
 }
 const { lang = "it" } = Astro.props;
 
-const agenti: agentiType[] = [
-  {
-    acf: {
-      nome: "Nicola",
-      cognome: "Balestra",
-      email: "nbalestra",
-      telefono: "349 186 7830",
-      presentazione: "",
-      foto_profilo: 2282,
-    },
-    images: {
-      medium: "https://privato.gruppoedoardo.it/wp-content/uploads/2022/03/nicola-240x300.png",
-      large: "https://privato.gruppoedoardo.it/wp-content/uploads/2022/03/nicola-819x1024.png",
-    },
-  },
-  {
-    acf: {
-      nome: "Marco",
-      cognome: "Ciaccia",
-      email: "mciaccia",
-      telefono: "3939344284",
-      presentazione:
-        "svolgo la professione di agente immobiliare da Luglio dell’anno 2000, sempre con lo stesso gruppo di lavoro giovane, dinamico e costantemente aggiornato.\r\n\r\nTratto personalmente la compravendita e la locazione di immobili residenziali a Torino e provincia, e mi avvalgo della consulenza di altri studi professionali di mia fiducia (architetto, geometra, avvocato, notaio, commercialista) con l’obiettivo di offrire a coloro che mi si rivolgono per vendere, affittare o acquistare un immobile, un servizio a 360°.",
-      foto_profilo: 914,
-    },
-    images: {
-      medium:
-        "https://privato.gruppoedoardo.it/wp-content/uploads/2021/06/73ca792e-marco-240x300.png",
-      large:
-        "https://privato.gruppoedoardo.it/wp-content/uploads/2021/06/73ca792e-marco-819x1024.png",
-    },
-  },
-  {
-    acf: {
-      nome: "Tito",
-      cognome: "Balzano",
-      email: "tbalzano",
-      telefono: "3926170787",
-      presentazione: "",
-      foto_profilo: 966,
-    },
-    images: {
-      medium:
-        "https://privato.gruppoedoardo.it/wp-content/uploads/2021/06/e2a97cd1-tito-240x300.png",
-      large: "https://privato.gruppoedoardo.it/wp-content/uploads/2021/06/e2a97cd1-tito.png",
-    },
-  },
-  {
-    acf: {
-      nome: "Luca",
-      cognome: "Querzoli",
-      email: "lquerzoli",
-      telefono: "335 45 30 83",
-      presentazione: "",
-      foto_profilo: 2667,
-    },
-    images: {
-      medium: "https://privato.gruppoedoardo.it/wp-content/uploads/2021/05/luca-240x300.png",
-      large: "https://privato.gruppoedoardo.it/wp-content/uploads/2021/05/luca-819x1024.png",
-    },
-  },
-];
+const response = await fetch("https://privato.gruppoedoardo.it/wp-json/wp/v2/agenti")
+const agenti: agentiType[] = await response.json()
+
 
 const ui: UI = {
   it: {
     realEstateAgent: "Agente Immobiliare",
+    backToHome: "Torna alla Home"
   },
   en: {
     realEstateAgent: "Real Estate Agent",
+    backToHome: "Back to Home"
   },
 };
 
@@ -118,17 +62,13 @@ function generaTelefono(telefono: string): string {
   <Navbar {lang} />
   <div class="m-10 md:mx-20">
     <a class="my-5 block w-fit rounded bg-blue-600 p-5 py-3 text-white" href="../">
-      🏠Torna alla Home</a
+      🏠 {t("backToHome")}</a
     >
     <div class="grid grid-cols-fill-19 gap-5">
       {
         agenti.map((agente) => (
           <div class="flex flex-col border bg-white drop-shadow transition-all hover:scale-[1.03]">
-            <Immagine
-              alt={`la foto profilo di ${agente.acf.nome} ${agente.acf.cognome}`}
-              url={`${agente.acf.nome.toLowerCase()}-profilo`}
-            />
-
+            <Image src={`${agente.images.large as string}`} alt="A description of my image." height="400" width={330}/>
             <div class=" bg-primario flex flex-col p-10 text-white">
               <span class="w-fit text-xl ">
                 {agente.acf.nome} {agente.acf.cognome}
