@@ -2,7 +2,6 @@
 import Immagine from "../../componenti/immagine.astro";
 import type { UI, Language } from "../../i18n/ui";
 import { useTranslations } from "../../i18n/utilis";
-
 // Aggiungi le traduzioni nel dizionario `ui` per italiano e inglese
 const ui: UI = {
   it: {
@@ -25,10 +24,10 @@ const t = useTranslations(lang, ui);
 ---
 
 <div class="relative h-[400px] w-full md:h-[60vh]">
-  <div class={`absolute h-full w-full`}>
-    <Immagine alt={t("happyFamilyBackground")} url="immagine_prima_pagina" />
+  <div class="absolute h-full w-full overflow-hidden">
+    <Immagine alt={t("happyFamilyBackground")} name="cover" />
   </div>
-  <div class="absolute z-10 h-full w-full bg-white bg-opacity-90">
+  <div class="absolute z-10 h-full w-full bg-white bg-opacity-80">
     <div class="flex h-full flex-col justify-center gap-4 p-10 md:px-20 lg:w-[60%]">
       <h1 class="text-4xl font-medium">{t("title")}</h1>
       <p>

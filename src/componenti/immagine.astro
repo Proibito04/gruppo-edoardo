@@ -1,15 +1,31 @@
 ---
 interface Props {
-  url: string;
+  name: string;
   alt: string
 }
-const { url, alt } = Astro.props;
-// todo add the image
+const { name, alt } = Astro.props;
+
+const imageName = name;
+
+// Build file paths based on naming convention
+const imagePc = `/img/cover/${imageName}_pc.jpeg`;
+const imagePcWebp = `/img/cover/${imageName}_pc.webp`;
+const imageTablet = `/img/cover/${imageName}_tablet.jpeg`;
+const imageTabletWebp = `/img/cover/${imageName}_tablet.webp`;
+const imagePhone = `/img/cover/${imageName}_phone.jpeg`;
+const imagePhoneWebp = `/img/cover/${imageName}_phone.webp`;
 ---
 
-
-<picture>
-  <source type="image/webp" srcset={`https://storage.googleapis.com/pubblico-sito-edoardo/webp/${url}.webp`}>
-  <source type="image/jpeg" srcset={`https://storage.googleapis.com/pubblico-sito-edoardo/jpeg/${url}.jpg`}>
-  <img src={`https://storage.googleapis.com/pubblico-sito-edoardo/jpeg/${url}.jpg`} alt={alt} class="h-full w-full object-cover">
+<!-- Then use them in your component -->
+<picture >
+  <source srcset={imagePcWebp} type="image/webp" media="(min-width: 1024px)">
+  <source srcset={imageTabletWebp} type="image/webp" media="(min-width: 768px)">
+  <source srcset={imagePhoneWebp} type="image/webp" media="(max-width: 767px)">
+  <!-- Fallback for browsers that don't support WebP -->
+  <source srcset={imagePc} type="image/jpeg" media="(min-width: 1024px)">
+  <source srcset={imageTablet} type="image/jpeg" media="(min-width: 768px)">
+  <source srcset={imagePhone} type="image/jpeg" media="(max-width: 767px)">
+  
+  <!-- Default image -->
+  <img src={imagePhone} {alt}  class="h-full w-full object-cover" />
 </picture>
