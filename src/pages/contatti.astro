@@ -3,7 +3,7 @@ import Footer from "../componenti/footer.astro";
 import Navbar from "../componenti/navbar/navbar.astro";
 import type { Language, UI } from "../i18n/ui";
 import Layout from "../layouts/Layout.astro";
-import {useTranslations} from "../i18n/utilis"
+import { useTranslations } from "../i18n/utilis";
 
 interface Props {
   lang: Language;
@@ -25,7 +25,7 @@ const ui: UI = {
   },
 };
 
-const t = useTranslations(lang, ui)
+const t = useTranslations(lang, ui);
 ---
 
 <Layout

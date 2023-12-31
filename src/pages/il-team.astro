@@ -21,10 +21,10 @@ type agentiType = {
   };
 };
 
-interface Props{
-  lang: Language
+interface Props {
+  lang: Language;
 }
-const {lang = "it"} = Astro.props
+const { lang = "it" } = Astro.props;
 
 const agenti: agentiType[] = [
   {
@@ -91,14 +91,14 @@ const agenti: agentiType[] = [
 
 const ui: UI = {
   it: {
-    "realEstateAgent": "Agente Immobiliare"
+    realEstateAgent: "Agente Immobiliare",
   },
   en: {
-    "realEstateAgent": "Real Estate Agent"
-  }
-}
+    realEstateAgent: "Real Estate Agent",
+  },
+};
 
-const t = useTranslations(lang, ui)
+const t = useTranslations(lang, ui);
 
 //  https://privato.gruppoedoardo.it/wp-json/wp/v2/agenti
 

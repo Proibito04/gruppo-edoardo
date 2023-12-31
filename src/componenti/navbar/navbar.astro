@@ -3,8 +3,9 @@ import LogoEsteso from "../logo/logo-esteso.astro";
 import MenuTel from "./menu-tel.svelte";
 import NavPc from "./nav-pc.astro";
 import type { ElementiMenu } from "../../types/elementiMenu";
-import type { Language} from "../../i18n/ui"
+import type { Language } from "../../i18n/ui";
 import { getAbsoluteLocaleUrl } from "astro:i18n";
+import LanguagePicker from "../LanguagePicker.astro";
 
 const elementiMenu: ElementiMenu = [];
 interface Props {
@@ -13,35 +14,38 @@ interface Props {
 
 const { lang = "it" } = Astro.props;
 
-function generateMenu(){
-  for(let [key, val] of Object.entries(ui[lang])){
-    console.log(key, val)
-    elementiMenu.push({nome: val, link: getAbsoluteLocaleUrl(lang, modelLink(val == "Home" ? "" : val))})
+function generateMenu() {
+  for (let [key, val] of Object.entries(ui[lang])) {
+    console.log(key, val);
+    elementiMenu.push({
+      nome: val,
+      link: getAbsoluteLocaleUrl(lang, modelLink(val == "Home" ? "" : val)),
+    });
   }
 }
 
-function modelLink(s: string): string{
+function modelLink(s: string): string {
   return s.replaceAll(" ", "-").toLowerCase();
 }
 
-const ui: {[lang: string]: object} = {
+const ui: { [lang: string]: object } = {
   it: {
-    "home": "Home",
-    "contacts": "Contatti",
-    "team": "Il Team",
-    "workWithUs": "Lavora con noi",
-    "ourProposals": "Le nostre proposte",
+    home: "Home",
+    contacts: "Contatti",
+    team: "Il Team",
+    workWithUs: "Lavora con noi",
+    ourProposals: "Le nostre proposte",
   },
-  en:{
-    "home": "Home",
-    "contacts": "Contacts",
-    "team": "Our team",
-    "workWithUs": "Work with us",
-    "ourProposals": "Our proposal"
-  }
-}
+  en: {
+    home: "Home",
+    contacts: "Contacts",
+    team: "Our team",
+    workWithUs: "Work with us",
+    ourProposals: "Our proposal",
+  },
+};
 
-generateMenu()
+generateMenu();
 ---
 
 <div
@@ -51,6 +55,7 @@ generateMenu()
     <LogoEsteso />
   </a>
 
+  <LanguagePicker />
   <div class="ml-auto hidden h-full items-center md:flex">
     <NavPc elementiMenu={elementiMenu} />
   </div>

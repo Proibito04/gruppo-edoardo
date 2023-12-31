@@ -11,9 +11,9 @@ module.exports = {
         primario: "#22446d",
       },
       gridTemplateColumns: {
-        'fill-16': 'repeat(auto-fill, minmax(4rem, 1fr))',
-        'fill-300': 'repeat(auto-fill, minmax(300px, 1fr))',
-        'fill-19': 'repeat(auto-fill, minmax(19rem, 1fr))',
+        "fill-16": "repeat(auto-fill, minmax(4rem, 1fr))",
+        "fill-300": "repeat(auto-fill, minmax(300px, 1fr))",
+        "fill-19": "repeat(auto-fill, minmax(19rem, 1fr))",
         // etc.
       },
     },

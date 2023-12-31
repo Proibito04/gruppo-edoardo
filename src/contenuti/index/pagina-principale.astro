@@ -6,14 +6,16 @@ import { useTranslations } from "../../i18n/utilis";
 const ui: UI = {
   it: {
     title: "Gruppo Edoardo",
-    description: "Scegliere la propria casa è un momento importante della vita, noi siamo qui per rendere questo viaggio semplice e piacevole. Con il nostro team di esperti e un approccio personalizzato, vi garantiamo un'esperienza di acquisto immobiliare unica e rilassante",
-    callUs: "Chiamaci"
+    description:
+      "Scegliere la propria casa è un momento importante della vita, noi siamo qui per rendere questo viaggio semplice e piacevole. Con il nostro team di esperti e un approccio personalizzato, vi garantiamo un'esperienza di acquisto immobiliare unica e rilassante",
+    callUs: "Chiamaci",
   },
   en: {
-    description: "Choosing your home is an important moment in life, and we are here to make this journey simple and enjoyable. With our team of experts and a personalized approach, we guarantee you a unique and relaxing real estate purchasing experience",
-    callUs: "Call Us"
-  }
-}
+    description:
+      "Choosing your home is an important moment in life, and we are here to make this journey simple and enjoyable. With our team of experts and a personalized approach, we guarantee you a unique and relaxing real estate purchasing experience",
+    callUs: "Call Us",
+  },
+};
 
 interface Props {
   lang: Language;
@@ -29,7 +31,9 @@ const t = useTranslations(lang, ui);
   </div>
   <div class="absolute z-10 h-full w-full bg-white bg-opacity-80">
     <div class="flex h-full flex-col justify-center gap-4 p-10 md:px-20 lg:w-[60%]">
-      <h1 class="text-4xl font-medium">{t("title")}</h1>
+      <h1 class="text-4xl font-medium">
+        {t("title")}
+      </h1>
       <p>
         {t("description")}
       </p>

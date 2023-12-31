@@ -7,8 +7,8 @@ import Layout from "../layouts/Layout.astro";
 
 const ui: UI = {
   it: {
-    "title": "Lavora con noi",
-    "motivation": `Vuoi investire sul tuo futuro? Entra subito nella nostra squadra! <br />Stiamo cercando
+    title: "Lavora con noi",
+    motivation: `Vuoi investire sul tuo futuro? Entra subito nella nostra squadra! <br />Stiamo cercando
 agenti immobiliari con o senza esperienza, dinamiche e con molta voglia di crescere
 professionalmente. <br />Offriamo: <br />– più di venticinque anni di esperienza nel
 settore; <br />– una struttura organizzata; <br />– life e business coach in sede; <br />–
@@ -16,46 +16,43 @@ collaborazione attraverso piattaforma replat; <br />Richiediamo: <br />– ottim
 di linguaggio; <br />– attitudine al contatto con le persone; <br />– ambizione,
 determinazione e voglia di crescere come libero professionista; <br />– capacità di
 ascolto e problem solving; <br />– predisposizione al raggiungimento degli obiettivi.`,
-    "name": "Nome",
-    "surname": "Cognome",
-    "age": "Età",
-    "phoneNumber": "Numero di Telefono",
-    "details": "Dettagli",
-    "privacy": "Accetto il contratto della privacy",
-    "send": "Invia"
+    name: "Nome",
+    surname: "Cognome",
+    age: "Età",
+    phoneNumber: "Numero di Telefono",
+    details: "Dettagli",
+    privacy: "Accetto il contratto della privacy",
+    send: "Invia",
   },
   en: {
-    "title": "Work with Us",
-    "motivation": `Want to invest in your future? Join our team now! <br />We are looking for real estate agents, both experienced and novices, who are dynamic and eager to grow professionally. <br />We offer: <br />– over twenty-five years of experience in the field; <br />– an organized structure; <br />– in-house life and business coaching; <br />– collaboration through the Replat platform; <br />We require: <br />– excellent language skills; <br />– an aptitude for interacting with people; <br />– ambition, determination, and a desire to grow as a freelance professional; <br />– listening and problem-solving skills; <br />– a goal-oriented mindset.`,
-    "name": "Name",
-    "surname": "Surname",
-    "age": "Age",
-    "phoneNumber": "Phone number",
-    "details": "Details",
-    "privacy": "I accept the privacy agreement",
-    "send": "Send"
-  }
+    title: "Work with Us",
+    motivation: `Want to invest in your future? Join our team now! <br />We are looking for real estate agents, both experienced and novices, who are dynamic and eager to grow professionally. <br />We offer: <br />– over twenty-five years of experience in the field; <br />– an organized structure; <br />– in-house life and business coaching; <br />– collaboration through the Replat platform; <br />We require: <br />– excellent language skills; <br />– an aptitude for interacting with people; <br />– ambition, determination, and a desire to grow as a freelance professional; <br />– listening and problem-solving skills; <br />– a goal-oriented mindset.`,
+    name: "Name",
+    surname: "Surname",
+    age: "Age",
+    phoneNumber: "Phone number",
+    details: "Details",
+    privacy: "I accept the privacy agreement",
+    send: "Send",
+  },
+};
+interface Props {
+  lang: Language;
 }
-interface Props{
-  lang: Language
-}
-const {lang = "it"} = Astro.props
-const t = useTranslations(lang, ui)
-
+const { lang = "it" } = Astro.props;
+const t = useTranslations(lang, ui);
 ---
 
 <Layout
   title={t("title")}
   descrizione="Lavora con noi! stiamo cercando agenti immobiliari come te. compila il forum per metterti in conttato con il Gruppo Edoardo. Entra nel Gruppo!"
 >
-  <Navbar {lang}/>
+  <Navbar {lang} />
   <div class="p-10 md:px-20">
     <div class="flex flex-wrap">
       <div class="md:w-[50%]">
         <h1 class="mb-5 text-4xl">{t("title")}</h1>
-        <p set:html={t("motivation")}>
-
-        </p>
+        <p set:html={t("motivation")} />
       </div>
       <div class="w-full md:max-w-[50%]">
         <div class="mt-5 grid w-full grid-cols-2 gap-5">

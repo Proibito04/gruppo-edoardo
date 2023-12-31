@@ -5,17 +5,17 @@ import LogoEstesoBianco from "./logo/logo-esteso-bianco.astro";
 
 const ui: UI = {
   it: {
-    "madeWith": "Fatto con il"
+    madeWith: "Fatto con il",
   },
   en: {
-    "madeWith" : "Made with"
-  }
+    madeWith: "Made with",
+  },
+};
+interface Props {
+  lang?: Language;
 }
-interface Props{
-  lang?: Language
-}
-const {lang = "it"} = Astro.props
-const t = useTranslations(lang, ui)
+const { lang = "it" } = Astro.props;
+const t = useTranslations(lang, ui);
 ---
 
 <div
