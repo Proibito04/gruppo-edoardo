@@ -19,8 +19,16 @@ const imagePhoneWebp = `/img/cover/${imageName}_phone.webp`;
 <!-- Then use them in your component -->
 <picture>
   <source srcset={imagePcWebp} type="image/webp" media="(min-width: 1024px)" />
-  <source srcset={imageTabletWebp} type="image/webp" media="(min-width: 768px)" />
-  <source srcset={imagePhoneWebp} type="image/webp" media="(max-width: 767px)" />
+  <source
+    srcset={imageTabletWebp}
+    type="image/webp"
+    media="(min-width: 768px)"
+  />
+  <source
+    srcset={imagePhoneWebp}
+    type="image/webp"
+    media="(max-width: 767px)"
+  />
   <!-- Fallback for browsers that don't support WebP -->
   <source srcset={imagePc} type="image/jpeg" media="(min-width: 1024px)" />
   <source srcset={imageTablet} type="image/jpeg" media="(min-width: 768px)" />

@@ -1,4 +1,7 @@
 <script lang="ts">
+  import type { Language, UI } from "../../i18n/ui.ts";
+  import { useTranslations } from "../../i18n/utilis.ts";
+
   let nome: string = "",
     cognome: string = "",
     email: string = "",
@@ -12,14 +15,14 @@
     fetch("https://privato.gruppoedoardo.it/wp-json/forms/contatti-interessati", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         nome: nome,
         cognome: cognome,
         email: email,
-        dettagli: dettagli,
-      }),
+        dettagli: dettagli
+      })
     })
       .then((response) => response.json())
       .then((data) => {
@@ -41,12 +44,37 @@
       errore = errore;
     }, 5000);
   }
-  
+
+  export let lang: Language = "it";
+  const ui: UI = {
+    it: {
+      name: "Nome",
+      surname: "Cognome",
+      email: "Email",
+      details: "Dettagli",
+      acceptPrivacy: "Accetta la privacy",
+      submitButton: "📤 Invia",
+      error: "errore",
+      success: "Form inviato con successo"
+    },
+    en: {
+      name: "Name",
+      surname: "Surname",
+      email: "Email",
+      details: "Details",
+      acceptPrivacy: "Accept Privacy",
+      submitButton: "📤 Submit",
+      error: "error",
+      success: "Form successfully submitted"
+    }
+  };
+
+  const t = useTranslations(lang, ui);
 </script>
 
-<form on:submit|preventDefault={inviaForm} class:inviati>
+<form on:submit|preventDefault={inviaForm} class:inviati={inviati}>
   <label class="block">
-    <span class="text-gray-700">Nome</span>
+    <span class="text-gray-700">{t("name")}</span>
     <input
       type="text"
       class="input-text"
@@ -57,11 +85,17 @@
     />
   </label>
   <label class="block">
-    <span class="text-gray-700">Cognome</span>
-    <input type="text" class="input-text" placeholder="Rossi" bind:value={cognome} required />
+    <span class="text-gray-700">{t("surname")}</span>
+    <input
+      type="text"
+      class="input-text"
+      placeholder="Rossi"
+      bind:value={cognome}
+      required
+    />
   </label>
   <label class="block">
-    <span class="text-gray-700">Email</span>
+    <span class="text-gray-700">{t("email")}</span>
     <input
       type="email"
       class="input-text"
@@ -71,7 +105,7 @@
     />
   </label>
   <label class="block">
-    <span class="text-gray-700">Dettagli</span>
+    <span class="text-gray-700">{t("details")}</span>
     <textarea
       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
       bind:value={dettagli}
@@ -88,14 +122,14 @@
             class="my-3 rounded border-gray-300 text-blue-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 focus:ring-offset-0"
             required
           />
-          <span class="ml-2">Accetta la privacy</span>
+          <span class="ml-2">{t("acceptPrivacy")}</span>
         </label>
       </div>
     </div>
   </div>
   <input
     type="submit"
-    value="📤 Invia"
+    value={t("submitButton")}
     class="submit w-full rounded bg-blue-600 p-5 py-4 text-center font-bold text-white transition-all hover:cursor-pointer hover:bg-blue-700"
     on:click={() => {
       inviati = true;
@@ -105,35 +139,37 @@
 
 {#if caricando}
   {#if errore}
-    <div class="border border-red-400 bg-white p-2 text-red-600">errore</div>
+    <div class="border border-red-400 bg-white p-2 text-red-600">{t("error")}</div>
   {:else}
-    <div class="border  bg-green-500 p-2 text-white">Form inviato con successo</div>
+    <div class="border bg-green-500 p-2 text-white">
+      {t("success")}
+    </div>
   {/if}
 {/if}
 
 <style type="text/postcss">
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
 
-  .input-text {
-    @apply mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm;
-  }
+    .input-text {
+        @apply mt-1 block w-full rounded-md border-gray-300 bg-white shadow-sm;
+    }
 
-  .input-text:focus {
-    @apply border-indigo-300 ring ring-indigo-200 ring-opacity-50;
-  }
+    .input-text:focus {
+        @apply border-indigo-300 ring ring-indigo-200 ring-opacity-50;
+    }
 
-  .inviati:invalid .input-text:invalid,
-  .inviati:invalid .submit:invalid {
-    @apply border-red-300 ring ring-red-200 ring-opacity-50;
-  }
+    .inviati:invalid .input-text:invalid,
+    .inviati:invalid .submit:invalid {
+        @apply border-red-300 ring ring-red-200 ring-opacity-50;
+    }
 
-  label {
-    @apply mt-3;
-  }
+    label {
+        @apply mt-3;
+    }
 
-  /* .input-text:valid{
-    @apply border-green-300 ring ring-green-200 ring-opacity-50 ;
-  } */
+    /* .input-text:valid{
+        @apply border-green-300 ring ring-green-200 ring-opacity-50 ;
+      } */
 </style>

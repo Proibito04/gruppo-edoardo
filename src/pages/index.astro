@@ -12,13 +12,13 @@ import { useTranslations } from "../i18n/utilis";
 
 const ui: UI = {
   it: {},
-  en: {},
+  en: {}
 };
 interface Props {
-  lang: Language;
+  lang?: Language;
 }
 const { lang = "it" } = Astro.props;
-const t = useTranslations(lang, ui);
+const t = useTranslations(<Language>lang, ui);
 ---
 
 <Layout
@@ -34,6 +34,6 @@ const t = useTranslations(lang, ui);
     <SezioneContatti {lang} />
   </div>
   <IlProcessoDiVendita {lang} />
-  <ImmobiliVetrina />
+  <ImmobiliVetrina {lang} />
   <Footer {lang} />
 </Layout>

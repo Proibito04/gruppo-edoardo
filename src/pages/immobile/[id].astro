@@ -1,10 +1,11 @@
 ---
 import Footer from "../../componenti/footer.astro";
-import Navbar from "../../componenti/navbar/navbar.astro";
-import Layout from "../../layouts/Layout.astro";
 import Galleria from "../../componenti/immobile-singolo/galleria.svelte";
-import AstroConfig from "../../../astro.config.mjs";
 import ListaImmobili from "../../componenti/immobili/lista-immobili.svelte";
+import Navbar from "../../componenti/navbar/navbar.astro";
+import type { Language } from "../../i18n/ui";
+import Layout from "../../layouts/Layout.astro";
+
 interface Props {
   id: string;
 }
@@ -61,8 +62,12 @@ if (risultato.data && risultato.data.status == 404) {
 function ottieniDettagli(): { nome: string; testo: string }[] {
   let ritorno: { nome: string; testo: string }[] = [];
   let contatore = 0;
+
   function aggiungi(nome: string, testo: string) {
-    if (testo == "") return;
+    if (testo == "") {
+      return { nome: "", testo: "" };
+    }
+
     ritorno[contatore] = { nome, testo };
     contatore++;
   }
@@ -78,6 +83,8 @@ function ottieniDettagli(): { nome: string; testo: string }[] {
 
   return ritorno;
 }
+export let lang: Language = "it";
+
 let prezzo: number | string = parseInt(immobile.acf.prezzo) ?? 0;
 prezzo = isNaN(prezzo) ? immobile.acf.prezzo : prezzo.toLocaleString();
 export const prerender = false;
@@ -85,9 +92,9 @@ export const prerender = false;
 
 <Layout
   title={`${immobile.acf.tipologia}, ${immobile.acf.indirizzo_immobile.name}`}
-  descrizione={`Immobile ${immobile.acf.indirizzo_immobile.street_name} del Gruppo edoArdo. Propone questo allaggio in ${immobile.acf.indirizzo_immobile.name} scropri tutti i dettagli`}
+  descrizione={`Immobile ${immobile.acf.indirizzo_immobile.street_name} del Gruppo edoArdo. Propone questo alloggio in ${immobile.acf.indirizzo_immobile.name} scopri tutti i dettagli`}
 >
-  <Navbar />
+  <Navbar {lang} />
   <div class="py-15 flex flex-col gap-5 p-5 md:px-20">
     <!-- intestazione -->
     <div>
@@ -95,15 +102,19 @@ export const prerender = false;
         {immobile.acf.tipologia}, {immobile.acf.indirizzo_immobile.name}
       </h1>
       <span
-        >{immobile.acf.indirizzo_immobile.city} - {immobile.acf.zona} - {
-          immobile.acf.indirizzo_immobile.name
-        }</span
+      >{immobile.acf.indirizzo_immobile.city} - {immobile.acf.zona} - {
+        immobile.acf.indirizzo_immobile.name
+      }</span
       >
     </div>
     <!-- fine intestazione -->
 
     <div>
-      <Galleria galleriaSrc={immobile.galleriaSrc} galleriaId={immobile.acf.galleria} client:idle />
+      <Galleria
+        galleriaSrc={immobile.galleriaSrc}
+        galleriaId={immobile.acf.galleria}
+        client:idle
+      />
     </div>
 
     <div>
@@ -132,16 +143,18 @@ export const prerender = false;
       </div>
     </div>
 
-    <!-- caratterische -->
+    <!-- caratteristiche -->
     <div>
-      <span class="sotto-titolo">Caratterische</span>
+      <span class="sotto-titolo">Caratteristiche</span>
       <div class="mb-2 h-0.5 bg-slate-200"></div>
       <div class="grid grid-cols-2 items-center gap-2 md:max-w-[70%]">
         {
           ottieniDettagli().map((dettagli) => (
             <>
               <span class="">{dettagli.nome}</span>
-              <span class="text-sm text-gray-600 md:text-base">{dettagli.testo}</span>
+              <span class="text-sm text-gray-600 md:text-base">
+                {dettagli.testo}
+              </span>
             </>
           ))
         }
@@ -180,6 +193,7 @@ export const prerender = false;
               <ListaImmobili
                 urlImmobili={`https://privato.gruppoedoardo.it/wp-json/immobili/agente/${immobile.acf.agente}`}
                 client:visible
+                {lang}
               />
             </div>
           </div>

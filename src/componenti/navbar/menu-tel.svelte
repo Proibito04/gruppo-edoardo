@@ -1,44 +1,36 @@
 <script lang="ts">
-  import type { ElementiMenu } from "../../types/elementiMenu";
+import type { ElementiMenu } from "../../types/elementiMenu";
 
-  let visibile = false;
+let visibile = false;
 
-  export let elementiMenu: ElementiMenu;
+export let elementiMenu: ElementiMenu;
 
-  let target: Element | null;
-  function portal(node: any, inject: string) {
-    target = document.querySelector(inject);
-    if (target && target.parentElement) {
-      target.className = "portal fixed top-0 z-[999999] h-full w-full";
-      target.appendChild(node);
-      document.body.className = "overflow-hidden";
-    }
-
-    return {
-      update() {
-        // the value of `bar` has changed
-      },
-
-      destroy() {
-        if (target) {
-          target.className = "portal";
-          document.body.className = "";
-        }
-      },
-    };
+let target: Element | null;
+function portal(node: any, inject: string) {
+  target = document.querySelector(inject);
+  if (target && target.parentElement) {
+    target.className = "portal fixed top-0 z-[999999] h-full w-full";
+    target.appendChild(node);
+    document.body.className = "overflow-hidden";
   }
+
+  return {
+    destroy() {
+      if (target) {
+        target.className = "portal";
+        document.body.className = "";
+      }
+    },
+  };
+}
 </script>
 
-<div
-  on:click={() => {
+<div on:click={() => {
     visibile = true;
-  }}
-  on:keydown
->
-  
-<svg
+  }} on:keydown>
+  <svg
     fill="currentColor"
-    class="h-5 w-8 text-gray-800 "
+    class="h-5 w-8 text-gray-800"
     width="24"
     height="24"
     viewBox="0 0 20 20"
@@ -60,12 +52,17 @@
 </div>
 
 {#if visibile}
-  <div class="p-5 flex align-middle h-full w-full bg-slate-500/50" use:portal={".portal"}>
-    <div class="flex flex-col bg-white shadow-lg rounded w-full p-5 overflow-auto">
+  <div
+    class="flex h-full w-full bg-slate-500/50 p-5 align-middle"
+    use:portal={".portal"}
+  >
+    <div
+      class="flex w-full flex-col overflow-auto rounded bg-white p-5 shadow-lg"
+    >
       <div class="mb-5">
         <span class="text-2xl font-medium">Il menu</span>
         <span
-          class="float-right w-8 h-8"
+          class="float-right h-8 w-8"
           on:click={() => {
             visibile = false;
           }}
@@ -79,7 +76,9 @@
         </span>
       </div>
       {#each elementiMenu as elemento}
-        <a class="border-t-[1px]  py-2 text-md" href={elemento.link}>{elemento.nome}</a>
+        <a class="text-md border-t-[1px] py-2" href={elemento.link}
+          >{elemento.nome}</a
+        >
       {/each}
     </div>
   </div>

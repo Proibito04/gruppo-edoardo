@@ -2,14 +2,14 @@
 export interface Props {
   title: string;
   descrizione?: string;
-  lang ?: string
+  lang?: string;
 }
 
 const { title, descrizione, lang = "it" } = Astro.props;
 import "./base.css";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html {lang}>
   <head>
     <meta charset="UTF-8" />
@@ -26,7 +26,7 @@ import "./base.css";
         "url": "https://privato.gruppoedoardo.it",
         "logo": "https://privato.gruppoedoardo.it/wp-content/uploads/4617d307-logo-edoardo-blu.svg"
       }
-      </script>
+    </script>
   </head>
 
   <body>

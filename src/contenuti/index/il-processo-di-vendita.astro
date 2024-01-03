@@ -14,7 +14,8 @@ const processi = [
 const ui: UI = {
   it: {
     subtitle: "Il nostro processo di vendita",
-    description: "Il processo di vendita immobiliare consiste in alcuni passaggi fondamentali...",
+    description:
+      "Il processo di vendita immobiliare consiste in alcuni passaggi fondamentali...",
     preliminaryAndAcquaintance: "Preliminare e Conoscitiva",
     documentVerification: "Verifica dei documenti",
     organizational: "Organizzativa",
@@ -51,10 +52,12 @@ const t = useTranslations(lang, ui);
       {
         processi.map((processo, indx) => (
           <div class="flex items-center py-2">
-            <span class="bg-primario  mr-5 min-h-[40px]  w-[40px] items-center justify-center rounded-full p-2 text-center align-middle text-white ">
+            <span class="mr-5  min-h-[40px] w-[40px]  items-center justify-center rounded-full bg-primario p-2 text-center align-middle text-white ">
               {indx + 1}
             </span>
-            <span class="text-md flex-grow basis-0 font-medium">La fase: {t(processo)}</span>
+            <span class="text-md flex-grow basis-0 font-medium">
+              La fase: {t(processo)}
+            </span>
           </div>
         ))
       }

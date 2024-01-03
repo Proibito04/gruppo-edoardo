@@ -9,7 +9,10 @@ export async function getStaticPaths() {
     { params: { page: "contacts" }, props: { Component: Contatti } },
     { params: { page: "our-team" }, props: { Component: IlTeam } },
     { params: { page: "work-with-us" }, props: { Component: LavoraConNoi } },
-    { params: { page: "our-proposal" }, props: { Component: LeNostreProposte } },
+    {
+      params: { page: "our-proposal" },
+      props: { Component: LeNostreProposte },
+    },
   ];
 }
 

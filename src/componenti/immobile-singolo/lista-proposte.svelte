@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import ImmobileAnteprima from "../immobili/immobile-anteprima.svelte";
+  import type { Language, UI } from "../../i18n/ui.ts";
+  import { useTranslations } from "../../i18n/utilis.ts";
 
   let pagineTotali = 0;
   let immobili: any[] = [];
@@ -30,7 +32,9 @@
         }
 
         if (response.headers.get("x-wp-totalpages") != null) {
-          pagineTotali = parseInt(response.headers.get("x-wp-totalpages") as string);
+          pagineTotali = parseInt(
+            response.headers.get("x-wp-totalpages") as string
+          );
         }
         return response.json();
       })
@@ -75,6 +79,19 @@
     window.history.pushState({}, "", url);
     ottieniImmobili(pagina.toString());
   }
+
+  const ui: UI = {
+    it: {
+      next: "Pagina Successiva",
+      previous: "Pagina precedente"
+    },
+    en: {
+      next: "Next page",
+      previous: "Previous page"
+    }
+  };
+  export let lang: Language = "it";
+  const t = useTranslations(lang, ui);
 </script>
 
 <div>
@@ -85,14 +102,16 @@
       disabled={paginaCorrente <= 1}
       class="inline-block rounded bg-blue-600 p-3 text-white transition-all disabled:bg-gray-400"
     >
-      ⬅️ Pagina precedente</button
+      ⬅️ {t("previous")}
+    </button
     >
     <button
       on:click={paginaSuccesiva}
       on:keydown
       disabled={paginaCorrente >= pagineTotali}
       class="inline-block rounded bg-blue-600 p-3 text-white transition-all disabled:bg-gray-400"
-      >Pagina successiva ➡️</button
+    >{t("next")} ➡️
+    </button
     >
   </div>
   <div class="flex flex-wrap gap-10">
@@ -103,7 +122,7 @@
     {/if}
 
     {#each immobili as immobile}
-      <ImmobileAnteprima {immobile} />
+      <ImmobileAnteprima immobile={immobile} />
     {/each}
   </div>
 </div>

@@ -1,6 +1,11 @@
 export const language: { [key in Language]: string } = {
   it: "Italiano",
-  en: "English",
+  en: "English"
+};
+
+export const languageMin: { [key in Language]: string } = {
+  it: "It",
+  en: "En"
 };
 
 export type Language = "it" | "en";

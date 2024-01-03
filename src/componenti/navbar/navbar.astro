@@ -18,7 +18,7 @@ function generateMenu() {
   for (let [key, val] of Object.entries(ui[lang])) {
     elementiMenu.push({
       nome: val,
-      link: getAbsoluteLocaleUrl(lang, modelLink(val == "Home" ? "" : val)),
+      link: getAbsoluteLocaleUrl(lang, modelLink(val == "Home" ? "" : val))
     });
   }
 }
@@ -33,24 +33,25 @@ const ui: { [lang: string]: object } = {
     contacts: "Contatti",
     team: "Il Team",
     workWithUs: "Lavora con noi",
-    ourProposals: "Le nostre proposte",
+    ourProposals: "Le nostre proposte"
   },
   en: {
     home: "Home",
     contacts: "Contacts",
     team: "Our team",
     workWithUs: "Work with us",
-    ourProposals: "Our proposal",
-  },
+    ourProposals: "Our proposal"
+  }
 };
 
 generateMenu();
 ---
 
+
 <div
-  class="font-s sans fixed top-0 z-20 flex h-20 w-full items-center gap-5 border bg-white py-3 px-10 align-middle drop-shadow md:px-20"
+  class="font-s sans fixed top-0 z-20 flex h-20 w-full items-center gap-5 border bg-white px-10 py-3 align-middle drop-shadow md:px-20"
 >
-  <a class="flex h-full w-32 align-middle" href="/">
+  <a class="flex h-full w-32 align-middle" href={lang == "it" ? "/" : "/en/"}>
     <LogoEsteso />
   </a>
 

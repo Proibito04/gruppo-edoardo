@@ -1,12 +1,27 @@
 ---
 import ListaImmobili from "../../componenti/immobili/lista-immobili.svelte";
+import { Language, UI } from "../../i18n/ui";
+import { useTranslations } from "../../i18n/utilis";
 
+interface Props {
+  lang: Language;
+}
+const { lang } = Astro.props;
+const ui: UI = {
+  it: {
+    showcase: "La nostra vetrina"
+  },
+  en: {
+    showcase: "Our showcase"
+  }
+};
+const t = useTranslations(lang, ui);
 const url = "https://privato.gruppoedoardo.it/wp-json/immobili/vetrina";
 ---
 
 <div class="flex flex-col p-10 md:px-20">
-  <span class="sotto-titolo">La nostra vetrina</span>
+  <span class="sotto-titolo">{t("showcase")}</span>
   <div>
-    <ListaImmobili client:visible urlImmobili={url} />
+    <ListaImmobili client:visible urlImmobili={url} {lang} />
   </div>
 </div>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import ImmobileAnteprima from "./immobile-anteprima.svelte";
+  import type { Language } from "../../i18n/ui";
 
   export let urlImmobili: string;
   let caricamento = true;
@@ -13,16 +14,19 @@
 
     caricamento = false;
   });
+
+  export let lang: Language = "it";
 </script>
 
-<div class="flex overflow-x-auto gap-5 flex-wrap md:justify-start">
+
+<div class="flex flex-wrap gap-5 overflow-x-auto md:justify-start">
   {#if caricamento}
     <ImmobileAnteprima />
     <ImmobileAnteprima />
     <ImmobileAnteprima />
   {:else}
     {#each dataImmobili as immobile}
-      <ImmobileAnteprima {immobile} />
+      <ImmobileAnteprima {immobile} {lang} />
     {/each}
   {/if}
 </div>
