@@ -55,7 +55,8 @@
       acceptPrivacy: "Accetta la privacy",
       submitButton: "📤 Invia",
       error: "errore",
-      success: "Form inviato con successo"
+      success: "Form inviato con successo",
+      placeholder: "mariorossi@esempio.it"
     },
     en: {
       name: "Name",
@@ -65,7 +66,8 @@
       acceptPrivacy: "Accept Privacy",
       submitButton: "📤 Submit",
       error: "error",
-      success: "Form successfully submitted"
+      success: "Form successfully submitted",
+      placeholder: "johndoe@example.it"
     }
   };
 
@@ -99,7 +101,7 @@
     <input
       type="email"
       class="input-text"
-      placeholder="mario@esempio.it"
+      placeholder={t("placeholder")}
       bind:value={email}
       required
     />
@@ -168,8 +170,4 @@
     label {
         @apply mt-3;
     }
-
-    /* .input-text:valid{
-        @apply border-green-300 ring ring-green-200 ring-opacity-50 ;
-      } */
 </style>

@@ -1,16 +1,17 @@
 ---
-import Footer from "../../componenti/footer.astro";
-import Galleria from "../../componenti/immobile-singolo/galleria.svelte";
-import ListaImmobili from "../../componenti/immobili/lista-immobili.svelte";
-import Navbar from "../../componenti/navbar/navbar.astro";
-import type { Language } from "../../i18n/ui";
-import Layout from "../../layouts/Layout.astro";
+import { Language } from "../../../i18n/ui";
+import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../componenti/navbar/navbar.astro";
+import Footer from "../../../componenti/footer.astro";
+import Galleria from "../../../componenti/immobile-singolo/galleria.svelte";
+import ListaImmobili from "../../../componenti/immobili/lista-immobili.svelte";
 
 interface Props {
   id: string;
+  lang?: Language;
 }
+const { id, lang } = Astro.params;
 
-const { id } = Astro.params;
 
 const url = `https://privato.gruppoedoardo.it/wp-json/wp/v2/immobili/${id}`;
 
@@ -72,14 +73,15 @@ function ottieniDettagli(): { nome: string; testo: string }[] {
     contatore++;
   }
 
-  aggiungi("Prezzo", `€ ${prezzo}`);
-  aggiungi("Contratto", immobile.acf.contratto);
-  aggiungi("Camere da letto", immobile.acf.camere_da_letto.toString());
-  aggiungi("Piani edificio", immobile.acf.totale_piani_edificio);
-  aggiungi("Anno di costruzione", immobile.acf.anno_di_costruzione.toString());
-  aggiungi("Altri locali", immobile.acf.altri_locali.toString());
-  aggiungi("Piano", immobile.acf.piano);
-  aggiungi("Ascensore", immobile.acf.con_ascensore ? "Sì" : "No");
+  aggiungi("Price", `€ ${prezzo}`);
+  aggiungi("Contract", immobile.acf.contratto);
+  aggiungi("Bedrooms", immobile.acf.camere_da_letto.toString());
+  aggiungi("Building Floors", immobile.acf.totale_piani_edificio);
+  aggiungi("Year of Construction", immobile.acf.anno_di_costruzione.toString());
+  aggiungi("Other Rooms", immobile.acf.altri_locali.toString());
+  aggiungi("Floor", immobile.acf.piano);
+  aggiungi("Elevator", immobile.acf.con_ascensore ? "Yes" : "No");
+
 
   return ritorno;
 }
@@ -87,7 +89,6 @@ export let lang: Language = "it";
 
 let prezzo: number | string = parseInt(immobile.acf.prezzo) ?? 0;
 prezzo = isNaN(prezzo) ? immobile.acf.prezzo : prezzo.toLocaleString();
-// noinspection JSUnusedGlobalSymbols
 export const prerender = false;
 ---
 
@@ -95,7 +96,7 @@ export const prerender = false;
   title={`${immobile.acf.tipologia}, ${immobile.acf.indirizzo_immobile.name}`}
   descrizione={`Immobile ${immobile.acf.indirizzo_immobile.street_name} del Gruppo edoArdo. Propone questo alloggio in ${immobile.acf.indirizzo_immobile.name} scopri tutti i dettagli`}
 >
-  <Navbar {lang} />
+  <Navbar lang="en" />
   <div class="py-15 flex flex-col gap-5 p-5 md:px-20">
     <!-- intestazione -->
     <div>
@@ -119,18 +120,18 @@ export const prerender = false;
     </div>
 
     <div>
-      <span class="sotto-titolo block">Prezzo</span>
+      <span class="sotto-titolo block">Price</span>
       <span class="text-poppins text-xl text-blue-600">€ {prezzo}</span>
     </div>
 
     <div>
-      <span class="sotto-titolo"> Descrizione</span>
+      <span class="sotto-titolo"> Description</span>
       <p set:html={immobile.acf.descrizione} />
     </div>
 
     <!-- mappa -->
     <div>
-      <span class="sotto-titolo">Mappa</span>
+      <span class="sotto-titolo">Map</span>
       <div class="relative aspect-video w-[100%] md:max-w-[50%]">
         <iframe
           class="absolute h-full w-full"
@@ -144,9 +145,9 @@ export const prerender = false;
       </div>
     </div>
 
-    <!-- caratteristiche -->
+
     <div>
-      <span class="sotto-titolo">Caratteristiche</span>
+      <span class="sotto-titolo">Features</span>
       <div class="mb-2 h-0.5 bg-slate-200"></div>
       <div class="grid grid-cols-2 items-center gap-2 md:max-w-[70%]">
         {
@@ -167,8 +168,8 @@ export const prerender = false;
       immobile.agente && (
         <>
           <div>
-            <span class="sotto-titolo">Agente</span>
-            <div class="flex flex-col gap-3">
+            <span class="sotto-titolo">Agent</span>
+            <div class="flex-col gap-3 flex">
               <div>
                 <img
                   src={immobile.agente.immagine}
@@ -189,12 +190,12 @@ export const prerender = false;
             </div>
           </div>
           <div>
-            <span class="sotto-titolo">Altri immobili dell'agente</span>
+            <span class="sotto-titolo">Other Properties of the Agent</span>
             <div>
               <ListaImmobili
                 urlImmobili={`https://privato.gruppoedoardo.it/wp-json/immobili/agente/${immobile.acf.agente}`}
                 client:visible
-                {lang}
+                lang="en"
               />
             </div>
           </div>
@@ -202,5 +203,5 @@ export const prerender = false;
       )
     }
   </div>
-  <Footer />
+  <Footer lang="en" />
 </Layout>

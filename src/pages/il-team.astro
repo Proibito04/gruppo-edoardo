@@ -28,19 +28,21 @@ interface Props {
 const { lang = "it" } = Astro.props;
 
 const response = await fetch(
-  "https://privato.gruppoedoardo.it/wp-json/wp/v2/agenti",
+  "https://privato.gruppoedoardo.it/wp-json/wp/v2/agenti"
 );
 const agenti: agentiType[] = await response.json();
 
 const ui: UI = {
   it: {
+    title: "Il Team",
     realEstateAgent: "Agente Immobiliare",
-    backToHome: "Torna alla Home",
+    backToHome: "Torna alla Home"
   },
   en: {
+    title: "Our Team",
     realEstateAgent: "Real Estate Agent",
-    backToHome: "Back to Home",
-  },
+    backToHome: "Back to Home"
+  }
 };
 
 const t = useTranslations(lang, ui);
@@ -57,7 +59,7 @@ function generaTelefono(telefono: string): string {
 ---
 
 <Layout
-  title="Gruppo Edoardo"
+  title={t("title")}
   descrizione="Conosci il team di Edoardo Immobiliare, la tua squadra di esperti immobiliari pronti a fornirti il miglior servizio e a trovare la casa dei tuoi sogni. Con anni di esperienza nel settore immobiliare e una vasta conoscenza del mercato, il nostro team è la scelta perfetta per la tua prossima transazione immobiliare."
 >
   <Navbar {lang} />

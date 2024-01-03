@@ -56,7 +56,7 @@
           controllo++;
           aggiornaUrl(1);
         } else {
-          console.error("errore Irriversibile!");
+          console.error("errore Irreversible!");
         }
       });
   }
@@ -115,7 +115,7 @@
     >
   </div>
   <div class="flex flex-wrap gap-10">
-    {#if immobili.length == 0}
+    {#if immobili.length === 0}
       {#each Array(8) as _}
         <ImmobileAnteprima />
       {/each}

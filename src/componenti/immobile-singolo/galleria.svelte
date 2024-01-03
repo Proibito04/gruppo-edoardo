@@ -1,27 +1,29 @@
 <script lang="ts">
-type galleria = {
-  [key: string]: {
-    media: string;
-    large: string;
+  type galleria = {
+    [key: string]: {
+      media: string;
+      large: string;
+    };
   };
-};
-export let galleriaSrc: galleria;
-export let galleriaId: string[];
+  export let galleriaSrc: galleria;
+  export let galleriaId: string[];
 
-let contatore = 0;
-let immagineCorrente = galleriaId[contatore];
-function incrementaContatore() {
-  if (contatore < galleriaId.length - 1) {
-    contatore++;
-    immagineCorrente = galleriaId[contatore];
+  let contatore = 0;
+  let immagineCorrente = galleriaId[contatore];
+
+  function incrementaContatore() {
+    if (contatore < galleriaId.length - 1) {
+      contatore++;
+      immagineCorrente = galleriaId[contatore];
+    }
   }
-}
-function decrementaContatore() {
-  if (contatore > 0) {
-    contatore--;
-    immagineCorrente = galleriaId[contatore];
+
+  function decrementaContatore() {
+    if (contatore > 0) {
+      contatore--;
+      immagineCorrente = galleriaId[contatore];
+    }
   }
-}
 </script>
 
 <div
@@ -37,8 +39,10 @@ function decrementaContatore() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"
-          class="mx-5 w-10 {contatore == 0 ? 'fill-gray-300' : 'fill-white'}"
-          ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z" /></svg
+          class="mx-5 w-10 {contatore === 0 ? 'fill-gray-300' : 'fill-white'}"
+        >
+          <path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z" />
+        </svg
         >
       </div>
       <div
@@ -49,12 +53,14 @@ function decrementaContatore() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"
-          class="mx-5 w-10 {contatore == galleriaId.length - 1
+          class="mx-5 w-10 {contatore === galleriaId.length - 1
             ? 'fill-gray-300'
             : 'fill-white'}"
-          ><path
+        >
+          <path
             d="m15.2 43.9-2.8-2.85L29.55 23.9 12.4 6.75l2.8-2.85 20 20Z"
-          /></svg
+          />
+        </svg
         >
       </div>
     </div>

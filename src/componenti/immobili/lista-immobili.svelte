@@ -9,8 +9,7 @@
 
   onMount(async () => {
     const response = await fetch(urlImmobili);
-    const character = await response.json();
-    dataImmobili = character;
+    dataImmobili = await response.json();
 
     caricamento = false;
   });

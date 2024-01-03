@@ -11,26 +11,28 @@ import "./base.css";
 
 <!doctype html>
 <html {lang}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <slot name="seo" />
-    {descrizione && <meta name="description" content={descrizione} />}
-    <script type="application/ld+json" slot="seo">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "url": "https://privato.gruppoedoardo.it",
-        "logo": "https://privato.gruppoedoardo.it/wp-content/uploads/4617d307-logo-edoardo-blu.svg"
-      }
-    </script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <slot name="seo" />
+  {descrizione &&
+    <meta name="description" content={descrizione} />}
+  <script type="application/ld+json" slot="seo">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://privato.gruppoedoardo.it",
+      "logo": "https://privato.gruppoedoardo.it/wp-content/uploads/4617d307-logo-edoardo-blu.svg"
+    }
+  </script>
+</head>
 
-  <body>
-    <slot />
-    <div class="portal"></div>
-  </body>
+<body>
+<slot />
+<div class="portal"></div>
+</body>
 </html>

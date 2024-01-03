@@ -5,16 +5,16 @@ import { useTranslations } from "../../i18n/utilis";
 const valori = [
   {
     titoloKey: "experienceTitle",
-    testoKey: "experienceText",
+    testoKey: "experienceText"
   },
   {
     titoloKey: "innovationTitle",
-    testoKey: "innovationText",
+    testoKey: "innovationText"
   },
   {
     titoloKey: "transparencyTitle",
-    testoKey: "transparencyText",
-  },
+    testoKey: "transparencyText"
+  }
 ];
 
 const ui: UI = {
@@ -27,7 +27,7 @@ const ui: UI = {
       "Siamo sempre alla ricerca di nuove soluzioni e opportunità per migliorare il processo di acquisto o vendita immobiliare...",
     transparencyTitle: "Trasparenza",
     transparencyText:
-      "La trasparenza è fondamentale per noi. Siamo orgogliosi di offrire ai nostri clienti un servizio trasparente e onesto...",
+      "La trasparenza è fondamentale per noi. Siamo orgogliosi di offrire ai nostri clienti un servizio trasparente e onesto..."
   },
   en: {
     experienceTitle: "Experience",
@@ -38,14 +38,14 @@ const ui: UI = {
       "We are always looking for new solutions and opportunities to improve the real estate buying or selling process...",
     transparencyTitle: "Transparency",
     transparencyText:
-      "Transparency is fundamental for us. We are proud to offer our clients a transparent and honest service...",
-  },
+      "Transparency is fundamental for us. We are proud to offer our clients a transparent and honest service..."
+  }
 };
 
 interface Props {
   lang: Language;
 }
-const { lang = "it" } = Astro.props;
+const { lang = "it" as Language } = Astro.props;
 const t = useTranslations(lang, ui);
 ---
 
@@ -60,7 +60,8 @@ const t = useTranslations(lang, ui);
     <div class="gap-15 flex overflow-x-auto">
       {
         valori.map((valore) => (
-          <div class="m-1 inline-flex min-w-[250px] flex-col rounded bg-slate-300 p-5 py-8 text-justify drop-shadow md:max-w-[300px]">
+          <div
+            class="m-1 inline-flex min-w-[250px] flex-col rounded bg-slate-300 p-5 py-8 text-justify drop-shadow md:max-w-[300px]">
             <span class="mb-2 font-poppins text-lg">{t(valore.titoloKey)}</span>
             <span>{t(valore.testoKey)}</span>
           </div>

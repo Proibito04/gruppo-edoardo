@@ -42,7 +42,7 @@
       <div class="aspect-video h-full w-full animate-pulse bg-slate-300" />
       <div class="h-6 animate-pulse bg-slate-300" />
     {:else}
-      <div class="aspect-video h-[220px] w-full bg-white">
+      <div class="aspect-video h-full w-full bg-white">
         <img
           src={immobile.immagine_copertina}
           alt=""
